@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-6xl px-5 sm:px-8">
+      <main className="mx-auto max-w-6xl px-5 pt-20 sm:px-8">
         <Hero />
-        <About />
         <Skills />
+        <About />
         <Projects />
         <Contact />
       </main>

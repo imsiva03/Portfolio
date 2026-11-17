@@ -6,9 +6,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
 
 export const metadata = {
-  title: "Sivasankaran N M | Programmer / Analyst",
+  title: "Sivasankaran N M | Programmer & Analyst",
   description:
-    "Portfolio of Sivasankaran N M, M.Sc. IT graduate building database-driven applications with Java, Spring Boot, Python and React.",
+    "Portfolio of Sivasankaran N M, a Programmer and Analyst building thoughtful applications with Java, Python, Spring Boot and React.",
 };
 
 export default function RootLayout({ children }) {

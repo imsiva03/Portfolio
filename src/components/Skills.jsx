@@ -1,22 +1,36 @@
+import { Code2, Database, Layers3, Wrench, BrainCircuit } from "lucide-react";
 import { skills } from "@/data/skills";
+
+const icons = [Code2, Layers3, Database, Wrench, BrainCircuit];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-12">
-      <h2 className="mb-8 font-heading text-3xl font-bold">Skills</h2>
-      <div className="space-y-6">
-        {skills.map((g) => (
-          <div key={g.group} className="flex flex-col gap-3 sm:flex-row sm:items-start">
-            <h3 className="w-32 shrink-0 pt-2 text-sm font-semibold">{g.group}</h3>
-            <ul className="flex flex-wrap gap-3">
-              {g.items.map((s) => (
-                <li key={s} className="rounded-full border-2 border-line bg-card px-4 py-2 text-sm">
-                  {s}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <section id="skills" className="section-block scroll-mt-16">
+      <div className="section-heading">
+        <p>Skills</p>
+        <h2>Tools I build with</h2>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {skills.map((group, index) => {
+          const Icon = icons[index % icons.length];
+          return (
+            <article key={group.group} className="skill-card">
+              <div className="mb-5 flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10 text-accent">
+                  <Icon size={20} aria-hidden="true" />
+                </span>
+                <h3 className="font-heading font-semibold">{group.group}</h3>
+              </div>
+              <ul className="flex flex-wrap gap-2">
+                {group.items.map((skill) => (
+                  <li key={skill} className="rounded-full border border-line bg-bg/70 px-3 py-1.5 text-xs text-muted">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

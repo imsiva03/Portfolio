@@ -3,12 +3,13 @@ import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-12">
-      <h2 className="mb-8 font-heading text-3xl font-bold">Projects</h2>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
-          <ProjectCard key={p.title} project={p} />
-        ))}
+    <section id="projects" className="section-block scroll-mt-16">
+      <div className="section-heading">
+        <p>Latest work</p>
+        <h2>Selected projects</h2>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} />)}
       </div>
     </section>
   );
