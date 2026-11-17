@@ -1,5 +1,4 @@
 import { ArrowDown, Download } from "lucide-react";
-import Image from "next/image";
 import { profile } from "@/data/profile";
 import SocialLinks from "./SocialLinks";
 
@@ -26,18 +25,6 @@ export default function Hero() {
         </div>
         <div className="mt-6">
           <SocialLinks includeEmail />
-        </div>
-        <div className="hero-profile-card">
-          <div className="hero-photo-frame">
-            <Image
-              src="/profile.png"
-              alt={`${profile.name} portrait`}
-              fill
-              priority
-              sizes="(max-width: 768px) 84vw, 416px"
-              className="hero-portrait object-cover object-top"
-            />
-          </div>
         </div>
       </div>
     </section>
