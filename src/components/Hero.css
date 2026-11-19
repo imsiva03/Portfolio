@@ -1,0 +1,484 @@
+
+/* =====================================
+   HERO CONTAINER
+===================================== */
+
+.hero-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 620px;
+  height: auto;
+  margin: 0;
+  padding: 90px 30px 55px;
+
+  background: transparent;
+  color: #1b1d14;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Background decoration */
+
+.hero-section .hero-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-section .hero-ambient span {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: rgba(247, 244, 231, .08);
+  filter: blur(80px);
+}
+
+.hero-section .hero-ambient span:first-child {
+  top: -180px;
+  left: -120px;
+}
+
+.hero-section .hero-ambient span:last-child {
+  right: -150px;
+  bottom: -180px;
+}
+
+/* =====================================
+   HERO CONTENT
+===================================== */
+
+.hero-section .hero-content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 1250px;
+  height: auto;
+
+  margin: 0 auto;
+  padding: 0;
+
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+}
+
+/* =====================================
+   LARGE HEADING
+===================================== */
+
+.hero-section .hero-title {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0;
+
+  color: #11130d;
+  font-size: clamp(36px, 4.7vw, 76px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.hero-section .hero-title span {
+  display: block;
+
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(40px);
+
+  animation: heroHeadingReveal 1s
+    cubic-bezier(.22, 1, .36, 1)
+    .15s both;
+}
+
+@keyframes heroHeadingReveal {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   ACTIONS ROW
+===================================== */
+
+.hero-section .hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: clamp(18px, 2vw, 30px);
+  width: 100%;
+  margin-top: 48px;
+
+  opacity: 0;
+  transform: translateY(30px);
+
+  animation: heroActionsReveal .85s
+    cubic-bezier(.22, 1, .36, 1)
+    .65s forwards;
+}
+
+@keyframes heroActionsReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   SMALL ROTATING DEVELOPER STAMP
+===================================== */
+
+.hero-section .hero-stamp {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 110px;
+
+  width: 110px;
+  height: 110px;
+  min-width: 110px;
+  min-height: 110px;
+  max-width: 110px;
+  max-height: 110px;
+
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Explicit SVG dimensions fix the huge circle */
+
+.hero-section .hero-stamp svg {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+  width: 110px;
+  height: 110px;
+  min-width: 110px;
+  max-width: 110px;
+  max-height: 110px;
+
+  overflow: visible;
+  fill: #f7f4e7;
+
+  animation: heroStampSpin 20s linear infinite;
+}
+
+.hero-section .hero-stamp svg text {
+  fill: #f7f4e7;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+}
+
+.hero-section .hero-stamp-center {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  place-items: center;
+
+  width: 52px;
+  height: 52px;
+
+  background: #222518;
+  color: #fff;
+  border-radius: 50%;
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+@keyframes heroStampSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================
+   VIEW MY WORK BUTTON
+===================================== */
+
+.hero-section .hero-work-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 54px;
+  padding: 15px 28px;
+
+  border: 1px solid #f7f4e7;
+  border-radius: 999px;
+
+  color: #f7f4e7;
+  background: transparent;
+
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.hero-section .hero-work-button:hover {
+  background: #f7f4e7;
+  color: #222518;
+  transform: translateY(-3px);
+}
+
+/* =====================================
+   CONTACT BUTTON + SOCIAL LINKS
+===================================== */
+
+.hero-section .hero-contact-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+
+  opacity: 1;
+  transform: none;
+  animation: none;
+  background: transparent;
+  border: 0;
+}
+
+.hero-section .hero-contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 54px;
+  padding: 15px 26px;
+
+  background: #4d5237;
+  color: #f7f4e7;
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color .3s ease,
+    transform .3s ease;
+}
+
+.hero-section .hero-contact-link:hover {
+  background: #30351f;
+  transform: translateY(-3px);
+}
+
+.hero-section .hero-social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-section .hero-social-links a {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  background: #f7f4e7;
+  color: #30351f;
+  border-radius: 50%;
+
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+
+  transition: transform .3s ease;
+}
+
+.hero-section .hero-social-links a:hover {
+  transform: translateY(-3px);
+}
+
+/* =====================================
+   SCROLL TO EXPLORE
+===================================== */
+
+.hero-section .hero-scroll {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: fit-content;
+  height: auto;
+  margin: 58px auto 0;
+  padding: 8px 12px;
+
+  color: #4d5237;
+  text-decoration: none;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(20px);
+
+  animation: heroScrollReveal .8s
+    cubic-bezier(.22, 1, .36, 1)
+    1.1s forwards;
+
+  transition: scale .35s ease;
+}
+
+.hero-section .hero-scroll-text {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: .035em;
+  white-space: nowrap;
+}
+
+.hero-section .hero-scroll-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  transition: transform .3s ease;
+}
+
+.hero-section .hero-scroll:hover {
+  scale: 1.08;
+}
+
+.hero-section .hero-scroll:hover .hero-scroll-icon {
+  transform: translateY(4px);
+}
+
+@keyframes heroScrollReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+  .hero-section {
+    min-height: 600px;
+    padding: 75px 22px 45px;
+  }
+
+  .hero-section .hero-title {
+    font-size: clamp(34px, 5.5vw, 58px);
+  }
+
+  .hero-section .hero-actions {
+    gap: 18px;
+    margin-top: 38px;
+  }
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+  .hero-section {
+    min-height: 0;
+    padding: 75px 18px 55px;
+  }
+
+  .hero-section .hero-title {
+    font-size: clamp(32px, 8vw, 44px);
+    line-height: 1.12;
+  }
+
+  .hero-section .hero-title-break {
+    display: none;
+  }
+
+  .hero-section .hero-actions {
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 35px;
+  }
+
+  .hero-section .hero-stamp {
+    flex-basis: 100px;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .hero-section .hero-stamp svg {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .hero-section .hero-contact-panel {
+    flex-wrap: wrap;
+  }
+
+  .hero-section .hero-scroll {
+    margin-top: 40px;
+  }
+}
+
+/* =====================================
+   ACCESSIBILITY
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section .hero-title span,
+  .hero-section .hero-actions,
+  .hero-section .hero-scroll,
+  .hero-section .hero-stamp svg {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .hero-section .hero-scroll,
+  .hero-section .hero-scroll-icon {
+    transition: none;
+  }
+}

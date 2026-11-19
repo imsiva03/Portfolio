@@ -1,37 +1,102 @@
-import { profile } from "@/data/profile";
+
+import Image from "next/image";
+import "./About.css";
 
 export default function About() {
   return (
-    <section id="about" className="section-block about-section scroll-mt-16">
-      <div className="section-heading">
-        <p>About</p>
-        <h2>Programmer / Analyst based in {profile.location}.</h2>
-      </div>
-      <p className="about-summary">{profile.summary}</p>
-      <a href={profile.resume} download className="about-resume-link">Download CV</a>
-      <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-        <div>
-          <h3 className="mb-5 font-heading text-lg font-semibold">Education</h3>
-          <ul>
-            {profile.education.map((e) => (
-              <li key={e.degree} className="about-list-item py-4 first:pt-0">
-                <p className="font-medium">{e.degree}</p>
-                <p className="mt-1 text-sm text-muted">{e.school} · {e.years}</p>
-                <p className="mt-1 text-sm text-muted">{e.score}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-heading text-lg font-semibold">{profile.award.title}</h3>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">{profile.award.detail}</p>
-          <div className="about-list-item mt-6 pt-5">
-            <h3 className="mb-3 font-heading text-base font-semibold">Certifications</h3>
-            <ul className="space-y-2 text-sm text-muted">
-              {profile.certifications.map((c) => <li key={c}>{c}</li>)}
-            </ul>
+    <section
+      id="about"
+      className="about-section"
+      aria-labelledby="about-heading"
+    >
+      <div className="about-container">
+        <div className="about-content">
+          <div className="about-label">
+            <span>ABOUT ME</span>
+            <span
+              className="about-label-line"
+              aria-hidden="true"
+            />
           </div>
-          <p className="about-list-item mt-6 pt-5 text-sm text-muted"><span className="font-medium text-ink">Languages:</span> {profile.languages}</p>
+
+          <h2 id="about-heading" className="about-heading">
+            <span className="about-heading-line">
+              THINK.
+            </span>
+            <span className="about-heading-line">
+              BUILD.
+            </span>
+            <span className="about-heading-line about-heading-accent">
+              INNOVATE.
+            </span>
+          </h2>
+
+          <p className="about-intro">
+            I'm Siva, a full-stack developer who enjoys
+            turning ideas into practical, user-friendly
+            web applications.
+          </p>
+
+          <p className="about-description">
+            With a background in Computer Science and
+            Information Technology, I enjoy solving
+            real-world problems through thoughtful design
+            and reliable development. I focus on creating
+            digital experiences that are intuitive,
+            functional, and built to last.
+          </p>
+
+          <blockquote className="about-quote">
+            <span
+              className="about-quote-mark"
+              aria-hidden="true"
+            >
+              “
+            </span>
+
+            <p>
+              Thoughtful by design,
+              <br />
+              built with purpose.
+            </p>
+          </blockquote>
+        </div>
+
+        <div className="about-visual">
+          <div className="about-image-card">
+            <div className="about-card-header">
+              <span className="about-card-name">
+                S I V A
+              </span>
+
+              <span className="about-card-category">
+                DESIGN × DEVELOPMENT
+              </span>
+            </div>
+
+            <div className="about-card-image">
+              <Image
+                src="/images/about-developer.webp"
+                alt="Illustration of a developer workspace"
+                fill
+                sizes="(max-width: 900px) 100vw, 45vw"
+                className="about-illustration"
+              />
+            </div>
+
+            <div className="about-card-footer">
+              <span>THOUGHTFUL BY DESIGN</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
+
+          <div className="about-card-badge">
+            BUILT WITH CARE
+            <span
+              className="about-badge-dot"
+              aria-hidden="true"
+            />
+          </div>
         </div>
       </div>
     </section>

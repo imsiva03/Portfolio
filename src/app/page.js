@@ -1,17 +1,20 @@
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import About from "@/components/About";
 import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
+
 
 export default function Home() {
   return (
-    <div className="portfolio-shell">
+    <main className="portfolio-shell">
       <Navbar />
-      <main>
+
+      <div className="home-about-wrapper">
         <Hero />
-        <Projects />
-      </main>
-      <Contact />
-    </div>
+        <About />
+        <Projects/>
+      </div>
+    </main>
   );
 }
