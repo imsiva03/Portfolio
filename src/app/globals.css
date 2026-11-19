@@ -4,7 +4,7 @@
 :root {
   color-scheme: light;
   --bg: #ffffff;
-  
+
   --ink: #111111;
   --muted: #737373;
   --card: #f2f1ee;
@@ -25,6 +25,7 @@
 }
 
 @theme inline {
+  
   --color-bg: var(--bg);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
