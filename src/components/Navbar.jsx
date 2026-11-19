@@ -1,21 +1,27 @@
 import Link from "next/link";
+import { profile } from "@/data/profile";
 
 const links = [
-  { href: "/", label: "home" },
-  { href: "/#about", label: "about" },
-  { href: "/#projects", label: "projects" },
-  { href: "/#skills", label: "skills" },
-  { href: "/#contact", label: "contact" },
+  { href: "/#home", label: "Home" },
+  { href: "/#projects", label: "Work" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   return (
     <nav className="site-nav" aria-label="Main">
-      {links.map((link) => (
-        <Link key={link.href} href={link.href} className="nav-link">
-          {link.label}
+      <div className="site-nav-inner">
+        <Link href="/#home" className="site-brand" aria-label={`${profile.name} home`}>
+          {profile.initials}
         </Link>
-      ))}
+        <div className="site-nav-links">
+          {links.map((link) => (
+            <Link key={link.href} href={link.href} className="nav-link">
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 }
