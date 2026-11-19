@@ -2,40 +2,36 @@ import { profile } from "@/data/profile";
 
 export default function About() {
   return (
-    <section id="about" className="section-block scroll-mt-16">
+    <section id="about" className="section-block about-section scroll-mt-16">
       <div className="section-heading">
-        <p>About me</p>
-        <h2>Thoughtful work, built on a strong foundation.</h2>
+        <p>About</p>
+        <h2>Programmer / Analyst based in {profile.location}.</h2>
       </div>
-      <div className="about-highlight mb-5 rounded-3xl p-7 sm:p-10">
-        <p className="mb-4 text-xs font-semibold tracking-[.18em] text-accent uppercase">Why I build</p>
-        <p className="max-w-5xl font-heading text-2xl font-bold uppercase leading-tight tracking-tight sm:text-4xl">
-          I turn practical problems into reliable applications with thoughtful code and data.
-        </p>
-      </div>
-      <div className="grid gap-5 md:grid-cols-2">
-        <div className="glass-card p-6 sm:p-8">
-          <h3 className="mb-6 font-heading text-lg font-semibold">Education</h3>
-          <ul className="space-y-6">
+      <p className="about-summary">{profile.summary}</p>
+      <a href={profile.resume} download className="about-resume-link">Download CV</a>
+      <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+        <div>
+          <h3 className="mb-5 font-heading text-lg font-semibold">Education</h3>
+          <ul>
             {profile.education.map((e) => (
-              <li key={e.degree} className="border-l-2 border-accent/70 pl-4">
+              <li key={e.degree} className="about-list-item py-4 first:pt-0">
                 <p className="font-medium">{e.degree}</p>
-                <p className="mt-1 text-sm text-muted">{e.school}</p>
-                <p className="mt-1 text-xs text-muted">{e.years} · {e.score}</p>
+                <p className="mt-1 text-sm text-muted">{e.school} · {e.years}</p>
+                <p className="mt-1 text-sm text-muted">{e.score}</p>
               </li>
             ))}
           </ul>
         </div>
-        <div className="glass-card p-6 sm:p-8">
+        <div>
           <h3 className="font-heading text-lg font-semibold">{profile.award.title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-muted">{profile.award.detail}</p>
-          <div className="mt-7 border-t border-line pt-6">
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">{profile.award.detail}</p>
+          <div className="about-list-item mt-6 pt-5">
             <h3 className="mb-3 font-heading text-base font-semibold">Certifications</h3>
             <ul className="space-y-2 text-sm text-muted">
               {profile.certifications.map((c) => <li key={c}>{c}</li>)}
             </ul>
           </div>
-          <p className="mt-6 border-t border-line pt-5 text-sm text-muted"><span className="font-medium text-ink">Languages:</span> {profile.languages}</p>
+          <p className="about-list-item mt-6 pt-5 text-sm text-muted"><span className="font-medium text-ink">Languages:</span> {profile.languages}</p>
         </div>
       </div>
     </section>
