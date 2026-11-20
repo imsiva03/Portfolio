@@ -1,32 +1,90 @@
 
 import Image from "next/image";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import "./Projects.css";
 
+/* ==========================================
+   PROJECT IMAGE PATHS
+========================================== */
+
+const PROJECT_IMAGES = {
+  ecommerce: "/images/projects/ecommerce.webp",
+  smartcardio: "/images/projects/smartcardio.webp",
+  music: "/images/projects/music.webp",
+};
+
+/* ==========================================
+   GET PROJECT IMAGE
+========================================== */
+
+function getProjectImage(project) {
+  const identifier = `${project.id ?? ""} ${project.title ?? ""}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+
+  if (
+    identifier.includes("ecommerce") ||
+    identifier.includes("buyora")
+  ) {
+    return PROJECT_IMAGES.ecommerce;
+  }
+
+  if (
+    identifier.includes("smartcardio") ||
+    identifier.includes("smartcadio")
+  ) {
+    return PROJECT_IMAGES.smartcardio;
+  }
+
+  if (identifier.includes("music")) {
+    return PROJECT_IMAGES.music;
+  }
+
+  return project.image;
+}
+
+/* ==========================================
+   PROJECT VISUAL
+========================================== */
+
 function ProjectVisual({ project }) {
+  const imageSrc = getProjectImage(project);
+
   return (
     <div className="project-visual">
       <div className="project-image-backdrop">
         <div className="project-image-frame">
-          <Image
-            src={project.image}
-            alt={project.imageAlt}
-            fill
-            sizes="(max-width: 768px) 100vw, 45vw"
-            className="project-image"
-          />
+          {imageSrc && (
+            <Image
+              src={imageSrc}
+              alt={
+                project.imageAlt ||
+                `${project.title} project illustration`
+              }
+              fill
+              sizes="(max-width: 768px) 100vw, 45vw"
+              className="project-image"
+              draggable={false}
+            />
+          )}
         </div>
       </div>
     </div>
   );
 }
 
+/* ==========================================
+   PROJECT DETAILS
+========================================== */
+
 function ProjectDetails({ project }) {
   return (
     <div className="project-details">
       <div className="project-meta">
-        <span>{project.number} / {project.year}</span>
+        <span>
+          {project.number} / {project.year}
+        </span>
       </div>
 
       <h3 className="project-title">
@@ -38,7 +96,7 @@ function ProjectDetails({ project }) {
       </p>
 
       <div className="project-technologies">
-        {project.technologies.map((tech) => (
+        {(project.technologies || []).map((tech) => (
           <span className="project-tech" key={tech}>
             {tech}
           </span>
@@ -53,12 +111,94 @@ function ProjectDetails({ project }) {
           rel="noopener noreferrer"
         >
           View Project
-          <ArrowUpRight size={18} />
+
+          <ArrowUpRight
+            size={18}
+            aria-hidden="true"
+          />
         </a>
       )}
     </div>
   );
 }
+
+/* ==========================================
+   CURVED TIMELINE LINE
+========================================== */
+
+function ProjectTimelineLine() {
+  return (
+    <svg
+      className="project-row-line"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="
+          M 50 0
+          C 72 16, 72 34, 50 50
+          C 28 66, 28 84, 50 100
+        "
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
+/* ==========================================
+   INDIVIDUAL PROJECT ROW
+========================================== */
+
+function ProjectRow({ project, index }) {
+  const reverse = index % 2 === 1;
+
+  return (
+    <article
+      className={`project-row ${
+        reverse ? "project-row-reverse" : ""
+      }`}
+    >
+      {/* CONNECTED CURVED LINE */}
+
+      <ProjectTimelineLine />
+
+      {/* LEFT COLUMN */}
+
+      <div className="project-column project-column-left">
+        {reverse ? (
+          <ProjectDetails project={project} />
+        ) : (
+          <ProjectVisual project={project} />
+        )}
+      </div>
+
+      {/* CENTER TIMELINE DOT */}
+
+      <div
+        className="project-timeline-dot"
+        aria-hidden="true"
+      />
+
+      {/* RIGHT COLUMN */}
+
+      <div className="project-column project-column-right">
+        {reverse ? (
+          <ProjectVisual project={project} />
+        ) : (
+          <ProjectDetails project={project} />
+        )}
+      </div>
+    </article>
+  );
+}
+
+/* ==========================================
+   PROJECTS SECTION
+========================================== */
 
 export default function Projects() {
   return (
@@ -69,6 +209,7 @@ export default function Projects() {
     >
       <div className="projects-container">
         {/* SECTION HEADER */}
+
         <div className="projects-header">
           <div>
             <span className="projects-eyebrow">
@@ -80,6 +221,7 @@ export default function Projects() {
               className="projects-heading"
             >
               Selected Work
+
               <span
                 className="projects-heading-star"
                 aria-hidden="true"
@@ -90,72 +232,24 @@ export default function Projects() {
           </div>
 
           <span className="projects-count">
-            01 — 03
+            01 — {String(projects.length).padStart(2, "0")}
           </span>
         </div>
 
         {/* PROJECT TIMELINE */}
+
         <div className="projects-timeline">
-          {/* CENTRAL CURVED LINE */}
-          <svg
-            className="projects-divider"
-            viewBox="0 0 100 1000"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              d="
-                M 50 0
-                C 80 100, 20 210, 50 330
-                S 80 550, 50 665
-                S 20 880, 50 1000
-              "
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              vectorEffect="non-scaling-stroke"
+          {projects.map((project, index) => (
+            <ProjectRow
+              key={project.id ?? project.title}
+              project={project}
+              index={index}
             />
-          </svg>
-
-          {projects.map((project, index) => {
-            const reverse = index % 2 === 1;
-
-            return (
-              <article
-                key={project.id}
-                className={`project-row ${
-                  reverse ? "project-row-reverse" : ""
-                }`}
-              >
-                {/* LEFT COLUMN */}
-                <div className="project-column project-column-left">
-                  {reverse ? (
-                    <ProjectDetails project={project} />
-                  ) : (
-                    <ProjectVisual project={project} />
-                  )}
-                </div>
-
-                {/* CENTER DOT */}
-                <div
-                  className="project-timeline-dot"
-                  aria-hidden="true"
-                />
-
-                {/* RIGHT COLUMN */}
-                <div className="project-column project-column-right">
-                  {reverse ? (
-                    <ProjectVisual project={project} />
-                  ) : (
-                    <ProjectDetails project={project} />
-                  )}
-                </div>
-              </article>
-            );
-          })}
+          ))}
         </div>
 
         {/* MORE TO COME */}
+
         <div className="projects-ending">
           <div
             className="projects-ending-line"

@@ -1,6 +1,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap");
 
+/* ==========================================
+   GLOBAL THEME
+========================================== */
+
 :root {
   --paper: #eee9d7;
   --olive: #a5aa69;
@@ -9,21 +13,41 @@
   --muted: #555942;
   --cream: #f7f4e7;
   --dark-olive: #4d5237;
+
+  /* Shared header and footer theme */
+
+  --brand-dark: #555740;
+  --brand-lime: #d4ff42;
+  --brand-white: #f6f5ef;
+  --brand-muted: #bfc0c0;
+
+  /* Navbar sizing */
+
+  --navbar-height: 80px;
 }
 
-* {
+/* ==========================================
+   GLOBAL RESET
+========================================== */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: calc(var(--navbar-height) + 20px);
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+
   background: #f8f6ef;
   color: var(--ink);
+
   font-family: "DM Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -43,17 +67,12 @@ svg {
   max-width: 100%;
 }
 
-.portfolio-shell {
-  width: min(100% - 32px, 1540px);
-  margin: 16px auto;
-  padding: 14px;
-
-  background: var(--paper);
-  border: 1px solid #d2cdb9;
-  border-radius: 22px;
-}
-
-/* Home and About form one continuous section */
+/* ==========================================
+   PORTFOLIO SHELL
+========================================== */
+/* ==========================================
+   HOME + ABOUT WRAPPER
+========================================== */
 
 .home-about-wrapper {
   display: flex;
@@ -65,6 +84,7 @@ svg {
   padding: 0;
 
   background: var(--olive);
+
   border-radius: 42px;
   overflow: clip;
   isolation: isolate;
@@ -77,30 +97,52 @@ svg {
   border-radius: 0;
 }
 
+/* ==========================================
+   SECTION SCROLL OFFSETS
+========================================== */
+
 #home,
-#about {
-  scroll-margin-top: 90px;
+#about,
+#projects,
+#contact {
+  scroll-margin-top: calc(var(--navbar-height) + 20px);
 }
 
-/* Projects remain visually separate */
+/* ==========================================
+   PROJECTS
+========================================== */
 
 .projects-section {
   position: relative;
   background: var(--paper);
 }
 
-/* Accessibility */
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
 
 :focus-visible {
   outline: 2px solid var(--dark-olive);
   outline-offset: 4px;
 }
 
+/* ==========================================
+   TABLET + MOBILE
+========================================== */
+
 @media (max-width: 768px) {
+  :root {
+    --navbar-height: 68px;
+  }
+
   .portfolio-shell {
     width: calc(100% - 16px);
+
     margin: 8px auto;
     padding: 8px;
+
+    padding-top: calc(var(--navbar-height) + 8px);
+
     border-radius: 18px;
   }
 
@@ -108,6 +150,10 @@ svg {
     border-radius: 28px;
   }
 }
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {

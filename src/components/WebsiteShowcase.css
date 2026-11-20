@@ -611,3 +611,117 @@
   }
 }
 
+
+/* ==========================================
+   SHOWCASE RESPONSIVE LAYOUT FIX
+========================================== */
+
+.website-showcase {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: clamp(38px, 4vw, 65px) 0
+    clamp(45px, 5vw, 80px);
+  overflow: hidden;
+}
+
+.ws-section-heading {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto clamp(25px, 3vw, 45px);
+  padding: 0 clamp(20px, 3vw, 48px);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ws-heading-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.ws-section-heading h2 {
+  margin: 0;
+  font-size: clamp(32px, 3.8vw, 62px);
+  line-height: 1.1;
+  text-align: left;
+}
+
+.ws-navigation {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.ws-marquee-viewport {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.ws-marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.ws-card-set {
+  display: flex;
+  flex-shrink: 0;
+  gap: 20px;
+  padding-right: 20px;
+}
+
+.ws-card {
+  flex: 0 0 auto;
+  width: clamp(320px, 24vw, 390px);
+  height: 530px;
+  min-height: 0;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .ws-section-heading {
+    padding: 0 24px;
+  }
+
+  .ws-section-heading h2 {
+    font-size: clamp(30px, 4.5vw, 48px);
+  }
+
+  .ws-card {
+    width: 340px;
+    height: 475px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .ws-section-heading {
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .ws-section-heading h2 {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .ws-card-set {
+    gap: 14px;
+    padding-right: 14px;
+  }
+
+  .ws-card {
+    width: min(82vw, 340px);
+    height: 475px;
+  }
+
+  .ws-nav-button {
+    width: 38px;
+    height: 38px;
+  }
+}
