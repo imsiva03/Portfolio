@@ -9,6 +9,7 @@ export default function Concepts() {
     <section id="concepts" className="section-block concepts-section scroll-mt-16">
       <div className="section-heading">
         <h2>Concepts</h2>
+        
       </div>
       <div className="concept-gallery" role="list" aria-label="Selected technologies">
         {concepts.map(({ skill, category }, index) => (
