@@ -6,7 +6,7 @@ export const projects = [
     year: "2026",
     title: "E-Commerce Application",
     description:
-      "A full-stack shopping platform featuring product browsing, user authentication, cart management, and a responsive shopping experience.",
+      "BuyOra - A full-stack shopping platform featuring product browsing, user authentication, cart management, and a responsive shopping experience.",
     technologies: ["Next.js", "Node.js", "MongoDB"],
     image: "/images/projects/ecommerce.webp",
     imageAlt: "E-commerce application interface",
@@ -18,7 +18,7 @@ export const projects = [
     year: "2025",
     title: "SmartCardio",
     description:
-      "A healthcare-focused application exploring artificial intelligence and natural language processing to support health-related insights.",
+      "A healthcare-focused application exploring artificial intelligence and natural language processing to support heart-related insights.",
     technologies: ["AI", "NLP", "Healthcare"],
     image: "/images/projects/smartcardio.webp",
     imageAlt: "SmartCardio healthcare dashboard",
