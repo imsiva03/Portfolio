@@ -1,27 +1,50 @@
 
-/* =====================================
-   HERO CONTAINER
-===================================== */
+/* ==========================================
+   HERO SECTION
+========================================== */
 
 .hero-section {
+  --hero-cream: #f7f4e7;
+  --hero-dark: #1b1d14;
+  --hero-olive: #4d5237;
+
   position: relative;
+  isolation: isolate;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   width: 100%;
-  min-height: 620px;
-  height: auto;
+ min-height: min(850px, calc(100svh - 32px));
+height: auto;
   margin: 0;
-  padding: 90px 30px 55px;
+
+  /*
+    Top padding prevents the fixed navbar
+    from covering the heading.
+  */
+  padding:
+    clamp(150px, 16vh, 190px)
+    clamp(20px, 3vw, 48px)
+    clamp(65px, 8vh, 100px);
 
   background: transparent;
-  color: #1b1d14;
+  color: var(--hero-dark);
+
   overflow: hidden;
-  isolation: isolate;
 }
 
-/* Background decoration */
+.hero-section *,
+.hero-section *::before,
+.hero-section *::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   BACKGROUND DECORATION
+========================================== */
 
 .hero-section .hero-ambient {
   position: absolute;
@@ -33,10 +56,14 @@
 
 .hero-section .hero-ambient span {
   position: absolute;
+
   width: 340px;
   height: 340px;
+
   border-radius: 50%;
-  background: rgba(247, 244, 231, .08);
+
+  background: rgba(247, 244, 231, 0.08);
+
   filter: blur(80px);
 }
 
@@ -50,9 +77,9 @@
   bottom: -180px;
 }
 
-/* =====================================
-   HERO CONTENT
-===================================== */
+/* ==========================================
+   MAIN CONTENT
+========================================== */
 
 .hero-section .hero-content {
   position: relative;
@@ -64,32 +91,34 @@
   justify-content: center;
 
   width: 100%;
-  max-width: 1250px;
-  height: auto;
+  max-width: 1450px;
 
   margin: 0 auto;
   padding: 0;
 
-  border: 0;
-  border-radius: 0;
-  background: transparent;
   text-align: center;
+  background: transparent;
+  border: 0;
 }
 
-/* =====================================
-   LARGE HEADING
-===================================== */
+/* ==========================================
+   MAIN HEADING
+========================================== */
 
 .hero-section .hero-title {
   width: 100%;
-  max-width: 1150px;
+  max-width: 1400px;
+
   margin: 0;
 
   color: #11130d;
-  font-size: clamp(36px, 4.7vw, 76px);
+
+  font-size: clamp(42px, 5.2vw, 96px);
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -.055em;
+
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+
   text-align: center;
   text-wrap: balance;
 }
@@ -101,9 +130,10 @@
   filter: blur(10px);
   transform: translateY(40px);
 
-  animation: heroHeadingReveal 1s
-    cubic-bezier(.22, 1, .36, 1)
-    .15s both;
+  animation:
+    heroHeadingReveal 1s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.15s both;
 }
 
 @keyframes heroHeadingReveal {
@@ -114,9 +144,9 @@
   }
 }
 
-/* =====================================
+/* ==========================================
    ACTIONS ROW
-===================================== */
+========================================== */
 
 .hero-section .hero-actions {
   display: flex;
@@ -124,16 +154,19 @@
   justify-content: center;
   flex-wrap: wrap;
 
-  gap: clamp(18px, 2vw, 30px);
   width: 100%;
-  margin-top: 48px;
+
+  gap: clamp(20px, 2.5vw, 38px);
+
+  margin-top: clamp(42px, 5vh, 65px);
 
   opacity: 0;
   transform: translateY(30px);
 
-  animation: heroActionsReveal .85s
-    cubic-bezier(.22, 1, .36, 1)
-    .65s forwards;
+  animation:
+    heroActionsReveal 0.85s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.65s forwards;
 }
 
 @keyframes heroActionsReveal {
@@ -143,53 +176,56 @@
   }
 }
 
-/* =====================================
-   SMALL ROTATING DEVELOPER STAMP
-===================================== */
+/* ==========================================
+   ROTATING DEVELOPER STAMP
+========================================== */
 
 .hero-section .hero-stamp {
   position: relative;
+
   display: grid;
   place-items: center;
-  flex: 0 0 110px;
 
-  width: 110px;
-  height: 110px;
-  min-width: 110px;
-  min-height: 110px;
-  max-width: 110px;
-  max-height: 110px;
+  flex: 0 0 145px;
+
+  width: 145px;
+  height: 145px;
+
+  min-width: 145px;
+  min-height: 145px;
 
   padding: 0;
   margin: 0;
+
   overflow: hidden;
 }
 
-/* Explicit SVG dimensions fix the huge circle */
+/* ROTATING TEXT RING */
 
 .hero-section .hero-stamp svg {
   position: absolute;
   inset: 0;
 
   display: block;
-  width: 110px;
-  height: 110px;
-  min-width: 110px;
-  max-width: 110px;
-  max-height: 110px;
 
+  width: 145px;
+  height: 145px;
+
+  max-width: none;
   overflow: visible;
-  fill: #f7f4e7;
 
   animation: heroStampSpin 20s linear infinite;
 }
 
 .hero-section .hero-stamp svg text {
-  fill: #f7f4e7;
-  font-size: 10px;
+  fill: var(--hero-cream);
+
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 1.1px;
 }
+
+/* CENTER SN CIRCLE */
 
 .hero-section .hero-stamp-center {
   position: relative;
@@ -198,14 +234,15 @@
   display: grid;
   place-items: center;
 
-  width: 52px;
-  height: 52px;
+  width: 68px;
+  height: 68px;
+
+  border-radius: 50%;
 
   background: #222518;
   color: #fff;
-  border-radius: 50%;
 
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 800;
 }
 
@@ -215,85 +252,90 @@
   }
 }
 
-/* =====================================
+/* ==========================================
    VIEW MY WORK BUTTON
-===================================== */
+========================================== */
 
 .hero-section .hero-work-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
 
-  min-height: 54px;
-  padding: 15px 28px;
+  gap: 15px;
 
-  border: 1px solid #f7f4e7;
+  min-height: 66px;
+  padding: 18px 34px;
+
+  border: 1px solid var(--hero-cream);
   border-radius: 999px;
 
-  color: #f7f4e7;
   background: transparent;
+  color: var(--hero-cream);
 
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 700;
+
   text-decoration: none;
   white-space: nowrap;
 
   transition:
-    background-color .3s ease,
-    color .3s ease,
-    transform .3s ease;
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .hero-section .hero-work-button:hover {
-  background: #f7f4e7;
+  background: var(--hero-cream);
   color: #222518;
+
   transform: translateY(-3px);
 }
 
-/* =====================================
-   CONTACT BUTTON + SOCIAL LINKS
-===================================== */
+/* ==========================================
+   CONTACT PANEL
+========================================== */
 
 .hero-section .hero-contact-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+
+  gap: 16px;
 
   width: auto;
-  height: auto;
   margin: 0;
   padding: 0;
 
-  opacity: 1;
-  transform: none;
-  animation: none;
   background: transparent;
   border: 0;
 }
+
+/* LET'S TALK BUTTON */
 
 .hero-section .hero-contact-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
 
-  min-height: 54px;
-  padding: 15px 26px;
+  gap: 15px;
 
-  background: #4d5237;
-  color: #f7f4e7;
+  min-height: 66px;
+  padding: 18px 32px;
+
   border-radius: 999px;
 
-  font-size: 16px;
+  background: var(--hero-olive);
+  color: var(--hero-cream);
+
+  font-size: 19px;
   font-weight: 700;
+
   text-decoration: none;
   white-space: nowrap;
 
   transition:
-    background-color .3s ease,
-    transform .3s ease;
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .hero-section .hero-contact-link:hover {
@@ -301,78 +343,102 @@
   transform: translateY(-3px);
 }
 
+/* CTA ARROWS */
+
+.hero-section .hero-work-button svg,
+.hero-section .hero-contact-link svg {
+  flex-shrink: 0;
+
+  width: 23px;
+  height: 23px;
+}
+
+/* ==========================================
+   SOCIAL BUTTONS
+========================================== */
+
 .hero-section .hero-social-links {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .hero-section .hero-social-links a {
   display: grid;
   place-items: center;
 
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
+  flex: 0 0 58px;
 
-  background: #f7f4e7;
-  color: #30351f;
+  width: 58px;
+  height: 58px;
+
   border-radius: 50%;
 
-  font-size: 12px;
+  background: var(--hero-cream);
+  color: #30351f;
+
+  font-size: 17px;
   font-weight: 800;
+
   text-decoration: none;
 
-  transition: transform .3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .hero-section .hero-social-links a:hover {
+  background: #fff;
   transform: translateY(-3px);
 }
 
-/* =====================================
+/* ==========================================
    SCROLL TO EXPLORE
-===================================== */
+========================================== */
 
 .hero-section .hero-scroll {
   display: inline-flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+
+  gap: 14px;
 
   width: fit-content;
-  height: auto;
-  margin: 58px auto 0;
+
+  margin: clamp(45px, 6vh, 75px) auto 0;
   padding: 8px 12px;
 
-  color: #4d5237;
+  color: var(--hero-olive);
   text-decoration: none;
   cursor: pointer;
 
   opacity: 0;
   transform: translateY(20px);
 
-  animation: heroScrollReveal .8s
-    cubic-bezier(.22, 1, .36, 1)
+  animation:
+    heroScrollReveal 0.8s
+    cubic-bezier(0.22, 1, 0.36, 1)
     1.1s forwards;
 
-  transition: scale .35s ease;
-}
-
-.hero-section .hero-scroll-text {
-  font-size: clamp(18px, 2vw, 24px);
-  font-weight: 500;
-  font-variant: small-caps;
-  letter-spacing: .035em;
-  white-space: nowrap;
+  transition: scale 0.35s ease;
 }
 
 .hero-section .hero-scroll-icon {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  transition: transform .3s ease;
+
+  width: 34px;
+  height: 34px;
+
+  transition: transform 0.3s ease;
+}
+
+.hero-section .hero-scroll-text {
+  font-size: clamp(21px, 2.1vw, 28px);
+  font-weight: 500;
+  font-variant: small-caps;
+
+  letter-spacing: 0.035em;
+  white-space: nowrap;
 }
 
 .hero-section .hero-scroll:hover {
@@ -390,34 +456,80 @@
   }
 }
 
-/* =====================================
+/* ==========================================
    TABLET
-===================================== */
+========================================== */
 
 @media (max-width: 900px) {
   .hero-section {
-    min-height: 600px;
-    padding: 75px 22px 45px;
+    min-height: calc(100svh - 16px);
+
+    padding:
+      135px 22px 70px;
   }
 
   .hero-section .hero-title {
-    font-size: clamp(34px, 5.5vw, 58px);
+    font-size: clamp(36px, 5.5vw, 58px);
   }
 
   .hero-section .hero-actions {
     gap: 18px;
-    margin-top: 38px;
+    margin-top: 40px;
+  }
+
+  /* Smaller stamp on tablet */
+
+  .hero-section .hero-stamp {
+    flex: 0 0 120px;
+
+    width: 120px;
+    height: 120px;
+
+    min-width: 120px;
+    min-height: 120px;
+  }
+
+  .hero-section .hero-stamp svg {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero-section .hero-stamp-center {
+    width: 56px;
+    height: 56px;
+    font-size: 17px;
+  }
+
+  .hero-section .hero-work-button,
+  .hero-section .hero-contact-link {
+    min-height: 58px;
+    padding: 15px 25px;
+    font-size: 16px;
+  }
+
+  .hero-section .hero-social-links a {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .hero-section .hero-scroll-icon {
+    width: 28px;
+    height: 28px;
   }
 }
 
-/* =====================================
+/* ==========================================
    MOBILE
-===================================== */
+========================================== */
 
 @media (max-width: 600px) {
   .hero-section {
-    min-height: 0;
-    padding: 75px 18px 55px;
+    min-height: calc(100svh - 16px);
+
+    padding:
+      110px 18px 50px;
   }
 
   .hero-section .hero-title {
@@ -431,40 +543,84 @@
 
   .hero-section .hero-actions {
     flex-direction: column;
-    gap: 18px;
+
+    gap: 20px;
     margin-top: 35px;
   }
 
+  /* Mobile rotating stamp */
+
   .hero-section .hero-stamp {
-    flex-basis: 100px;
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    flex: 0 0 112px;
+
+    width: 112px;
+    height: 112px;
+
+    min-width: 112px;
+    min-height: 112px;
   }
 
   .hero-section .hero-stamp svg {
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    width: 112px;
+    height: 112px;
+  }
+
+  .hero-section .hero-stamp-center {
+    width: 54px;
+    height: 54px;
+
+    font-size: 16px;
+  }
+
+  /* Mobile buttons */
+
+  .hero-section .hero-work-button,
+  .hero-section .hero-contact-link {
+    min-height: 54px;
+    padding: 14px 22px;
+
+    font-size: 15px;
+  }
+
+  .hero-section .hero-work-button svg,
+  .hero-section .hero-contact-link svg {
+    width: 20px;
+    height: 20px;
   }
 
   .hero-section .hero-contact-panel {
     flex-wrap: wrap;
+    gap: 12px;
   }
 
+  .hero-section .hero-social-links a {
+    flex-basis: 46px;
+    width: 46px;
+    height: 46px;
+
+    font-size: 14px;
+  }
+
+  /* Mobile scroll indicator */
+
   .hero-section .hero-scroll {
+    gap: 10px;
     margin-top: 40px;
+  }
+
+  .hero-section .hero-scroll-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .hero-section .hero-scroll-text {
+    font-size: 19px;
   }
 }
 
-/* =====================================
+/* ==========================================
    ACCESSIBILITY
-===================================== */
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
   .hero-section .hero-title span,
@@ -472,11 +628,15 @@
   .hero-section .hero-scroll,
   .hero-section .hero-stamp svg {
     animation: none;
+
     opacity: 1;
     filter: none;
     transform: none;
   }
 
+  .hero-section .hero-work-button,
+  .hero-section .hero-contact-link,
+  .hero-section .hero-social-links a,
   .hero-section .hero-scroll,
   .hero-section .hero-scroll-icon {
     transition: none;

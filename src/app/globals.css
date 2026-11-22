@@ -14,15 +14,13 @@
   --cream: #f7f4e7;
   --dark-olive: #4d5237;
 
-  /* Shared header and footer theme */
-
+  /* Shared theme colours */
   --brand-dark: #555740;
   --brand-lime: #d4ff42;
   --brand-white: #f6f5ef;
   --brand-muted: #bfc0c0;
 
-  /* Navbar sizing */
-
+  /* Navbar */
   --navbar-height: 80px;
 }
 
@@ -70,6 +68,18 @@ svg {
 /* ==========================================
    PORTFOLIO SHELL
 ========================================== */
+
+.portfolio-shell {
+  width: calc(100% - 32px);
+  max-width: none;
+
+  margin: 16px auto;
+  padding: 14px;
+
+  background: var(--paper);
+  border: 1px solid #d2cdb9;
+  border-radius: 22px;
+}
 /* ==========================================
    HOME + ABOUT WRAPPER
 ========================================== */
@@ -140,8 +150,6 @@ svg {
 
     margin: 8px auto;
     padding: 8px;
-
-    padding-top: calc(var(--navbar-height) + 8px);
 
     border-radius: 18px;
   }

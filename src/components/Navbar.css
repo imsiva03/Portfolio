@@ -289,3 +289,156 @@
     transition: none !important;
   }
 }
+/* Previous navbar colour theme */
+
+.portfolio-navbar {
+  --nav-bg: #d9ddb8;
+  --nav-accent: #a5aa69;
+  --nav-text: #1b1d14;
+  --nav-muted: #555942;
+
+  background: var(--nav-bg);
+  color: var(--nav-text);
+}
+
+/* Logo */
+
+.portfolio-navbar-logo {
+  background: #f7f4e7;
+  color: #1b1d14;
+  border-color: #1b1d14;
+}
+
+.portfolio-navbar-logo:hover {
+  background: #eee9d7;
+}
+
+/* Navigation links */
+
+.portfolio-navbar-link {
+  color: #1b1d14;
+}
+
+.portfolio-navbar-link:hover,
+.portfolio-navbar-link.is-active {
+  color: #555942;
+}
+
+/* Active underline */
+
+.portfolio-navbar-link::after {
+  background: #777e45;
+}
+
+/* Mobile menu button */
+
+.portfolio-navbar-toggle {
+  color: #1b1d14;
+  border-color: rgba(27, 29, 20, 0.2);
+}
+
+/* Mobile menu links */
+
+.portfolio-mobile-link {
+  color: #1b1d14;
+}
+
+.portfolio-mobile-link:hover,
+.portfolio-mobile-link.is-active {
+  color: #555942;
+}
+
+.portfolio-mobile-link {
+  border-bottom-color: rgba(27, 29, 20, 0.14);
+}
+
+/* ==========================================
+   HERO - LARGER ICONS & BUTTONS
+========================================== */
+
+/* GH / LinkedIn circular buttons */
+
+.hero-section a[aria-label*="GitHub"],
+.hero-section a[aria-label*="LinkedIn"] {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  min-height: 58px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+/* Enlarge SVG icons in hero links and buttons */
+
+.hero-section a svg,
+.hero-section button svg {
+  width: 23px;
+  height: 23px;
+  flex-shrink: 0;
+}
+
+/* Larger CTA buttons */
+
+.hero-section a[href="#projects"],
+.hero-section a[href="#contact"] {
+  min-height: 62px;
+  padding: 16px 30px;
+  font-size: 18px;
+  gap: 14px;
+}
+
+/* Larger scroll indicator */
+
+.hero-section [class*="scroll"] svg {
+  width: 28px;
+  height: 28px;
+}
+
+.hero-section [class*="scroll"] {
+  font-size: 18px;
+}
+
+/* Circular hero badge */
+
+.hero-section [class*="badge"] {
+  transform: scale(1.15);
+  transform-origin: center;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 768px) {
+  .hero-section a[aria-label*="GitHub"],
+  .hero-section a[aria-label*="LinkedIn"] {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+    font-size: 14px;
+  }
+
+  .hero-section a svg,
+  .hero-section button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hero-section a[href="#projects"],
+  .hero-section a[href="#contact"] {
+    min-height: 52px;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .hero-section [class*="badge"] {
+    transform: scale(1.05);
+  }
+}
