@@ -283,3 +283,12 @@
     font-size: 10px;
   }
 }
+
+/* Reduce the entire image size */
+
+.about-image-frame {
+  width: 55%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: 0 auto;
+}
