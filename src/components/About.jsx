@@ -89,6 +89,7 @@ export default function About() {
               <span aria-hidden="true">↗</span>
             </div>
           </div>
+          
 
           <div className="about-card-badge">
             BUILT WITH CARE
