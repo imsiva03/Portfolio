@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -9,6 +8,7 @@ import {
   Heart,
 } from "lucide-react";
 
+import { useState, useEffect } from "react";
 import "./Footer.css";
 
 /* ==========================================
@@ -62,6 +62,12 @@ function LinkedinIcon({ size = 19 }) {
 ========================================== */
 
 export default function Footer() {
+  const [year, setYear] = useState(2026);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   const scrollToTop = () => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -77,9 +83,7 @@ export default function Footer() {
     <footer className="footer-section" id="contact">
       <div className="footer-container">
 
-        {/* ==================================
-            MAIN FOOTER
-        ================================== */}
+        {/* MAIN FOOTER */}
 
         <div className="footer-main">
 
@@ -184,13 +188,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ==================================
-            BOTTOM BAR
-        ================================== */}
+        {/* BOTTOM BAR */}
 
         <div className="footer-bottom">
           <p>
-            © {new Date().getFullYear()} Sivasankaran.
+            © {year} Sivasankaran.
             All rights reserved.
           </p>
 
