@@ -1,6 +1,7 @@
 
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import "./Navbar.css";
@@ -153,7 +154,7 @@ export default function Navbar() {
           onClick={() => handleNavigation("#home")}
           aria-label="Sivasankaran - Home"
         >
-          SN
+          <Image src="/images/header-s-logo.png" alt="" width={70} height={70} />
         </a>
 
         {/* DESKTOP LINKS */}

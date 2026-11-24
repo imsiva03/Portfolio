@@ -291,3 +291,16 @@
     transition: none !important;
   }
 }
+
+.portfolio-navbar .portfolio-navbar-logo {
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.portfolio-navbar-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

@@ -164,10 +164,10 @@ svg {
   }
 }
 
-body {background:#eee9d7}
-body .portfolio-shell {padding:0;border:0;background:transparent;margin:calc(var(--navbar-height) + 18px) auto 24px;width:min(97%,1600px)}
+body {--portfolio-width: min(97%, 1600px);background:#eee9d7}
+body .portfolio-shell {padding:0;border:0;background:transparent;margin:calc(var(--navbar-height) + 18px) auto 24px;width:var(--portfolio-width)}
 .portfolio-shell .home-about-wrapper {background:transparent;border-radius:0}
-body .portfolio-navbar {border-radius:40px;background:rgba(217,221,184,.87);backdrop-filter:blur(16px);box-shadow:none}
+body .portfolio-navbar {width:var(--portfolio-width);border-radius:40px;background:rgb(214 213 177 / 75%);backdrop-filter:blur(16px);box-shadow:none}
 .home-about-wrapper > .hero-section {background:linear-gradient(135deg,#b3b97a,#9fa666);border-radius:clamp(24px,3vw,48px);min-height:calc(100svh - var(--navbar-height) - 32px);padding-block:clamp(76px,10vh,145px)}
 .home-about-wrapper .hero-title {max-width:23ch;margin-inline:auto;font-size:clamp(32px,4.2vw,76px);line-height:1.12;letter-spacing:-.045em;text-wrap:balance}
 .hero-section .hero-title-break {display:none}
