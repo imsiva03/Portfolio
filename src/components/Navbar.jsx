@@ -12,38 +12,109 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+const sectionIds = [
+  "home",
+  "about",
+  "projects",
+  "website-showcase",
+  "contact",
+];
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("#home");
 
+  // Track the section currently visible on screen.
   useEffect(() => {
-    const sectionIds = ["home", "about", "projects", "contact"];
+    let frame = null;
 
     const updateActive = () => {
-      const offset = window.scrollY + 160;
-      let current = "#home";
+      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY;
 
-      sectionIds.forEach((id) => {
-        const section = document.getElementById(id);
+      const documentHeight =
+        document.documentElement.scrollHeight;
 
-        if (section && section.offsetTop <= offset) {
-          current = `#${id}`;
+      // Highlight Contact when reaching the bottom.
+      if (
+        scrollY + viewportHeight >=
+        documentHeight - 40
+      ) {
+        setActive("#contact");
+        return;
+      }
+
+      const navbarHeight =
+        document.querySelector(".portfolio-navbar")
+          ?.getBoundingClientRect().height || 80;
+
+      const trigger =
+        navbarHeight +
+        Math.min(viewportHeight * 0.28, 180);
+
+      let current = "home";
+
+      for (const id of sectionIds) {
+        const element = document.getElementById(id);
+
+        if (!element) continue;
+
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= trigger) {
+          current = id;
         }
-      });
+      }
 
-      setActive(current);
+      // Website Showcase is part of Work.
+      if (current === "website-showcase") {
+        current = "projects";
+      }
+
+      setActive(`#${current}`);
+    };
+
+    const scheduleUpdate = () => {
+      if (frame !== null) return;
+
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        updateActive();
+      });
     };
 
     updateActive();
 
-    window.addEventListener("scroll", updateActive, {
+    window.addEventListener("scroll", scheduleUpdate, {
       passive: true,
     });
 
-    return () =>
-      window.removeEventListener("scroll", updateActive);
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("load", scheduleUpdate);
+
+    return () => {
+      window.removeEventListener(
+        "scroll",
+        scheduleUpdate
+      );
+
+      window.removeEventListener(
+        "resize",
+        scheduleUpdate
+      );
+
+      window.removeEventListener(
+        "load",
+        scheduleUpdate
+      );
+
+      if (frame !== null) {
+        cancelAnimationFrame(frame);
+      }
+    };
   }, []);
 
+  // Close the mobile menu with Escape.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -55,8 +126,12 @@ export default function Navbar() {
 
     window.addEventListener("keydown", closeOnEscape);
 
-    return () =>
-      window.removeEventListener("keydown", closeOnEscape);
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        closeOnEscape
+      );
+    };
   }, [menuOpen]);
 
   const handleNavigation = (href) => {
@@ -84,38 +159,52 @@ export default function Navbar() {
         {/* DESKTOP LINKS */}
 
         <div className="portfolio-navbar-links">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`portfolio-navbar-link ${
-                active === link.href ? "is-active" : ""
-              }`}
-              aria-current={
-                active === link.href ? "location" : undefined
-              }
-              onClick={() => handleNavigation(link.href)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = active === link.href;
+
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`portfolio-navbar-link ${
+                  isActive ? "is-active" : ""
+                }`}
+                aria-current={
+                  isActive ? "location" : undefined
+                }
+                onClick={() =>
+                  handleNavigation(link.href)
+                }
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
-        {/* MOBILE TOGGLE */}
+        {/* MOBILE MENU BUTTON */}
 
         <button
           type="button"
           className="portfolio-navbar-toggle"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() =>
+            setMenuOpen((previous) => !previous)
+          }
+          aria-label={
+            menuOpen ? "Close menu" : "Open menu"
+          }
           aria-expanded={menuOpen}
           aria-controls="portfolio-mobile-menu"
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          {menuOpen ? (
+            <X size={24} aria-hidden="true" />
+          ) : (
+            <Menu size={24} aria-hidden="true" />
+          )}
         </button>
       </nav>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE DROPDOWN */}
 
       <div
         id="portfolio-mobile-menu"
@@ -124,19 +213,32 @@ export default function Navbar() {
         }`}
         inert={!menuOpen}
       >
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className={`portfolio-mobile-link ${
-              active === link.href ? "is-active" : ""
-            }`}
-            onClick={() => handleNavigation(link.href)}
-          >
-            <span>{link.label}</span>
-            <ArrowUpRight size={20} aria-hidden="true" />
-          </a>
-        ))}
+        {navLinks.map((link) => {
+          const isActive = active === link.href;
+
+          return (
+            <a
+              key={link.href}
+              href={link.href}
+              className={`portfolio-mobile-link ${
+                isActive ? "is-active" : ""
+              }`}
+              aria-current={
+                isActive ? "location" : undefined
+              }
+              onClick={() =>
+                handleNavigation(link.href)
+              }
+            >
+              <span>{link.label}</span>
+
+              <ArrowUpRight
+                size={20}
+                aria-hidden="true"
+              />
+            </a>
+          );
+        })}
       </div>
     </header>
   );

@@ -14,18 +14,16 @@
   --cream: #f7f4e7;
   --dark-olive: #4d5237;
 
-  /* Shared theme colours */
   --brand-dark: #555740;
   --brand-lime: #d4ff42;
   --brand-white: #f6f5ef;
   --brand-muted: #bfc0c0;
 
-  /* Navbar */
   --navbar-height: 80px;
 }
 
 /* ==========================================
-   GLOBAL RESET
+   RESET
 ========================================== */
 
 *,
@@ -42,10 +40,8 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-
   background: #f8f6ef;
   color: var(--ink);
-
   font-family: "DM Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -72,7 +68,6 @@ svg {
 .portfolio-shell {
   width: calc(100% - 32px);
   max-width: none;
-
   margin: 16px auto;
   padding: 14px;
 
@@ -80,8 +75,9 @@ svg {
   border: 1px solid #d2cdb9;
   border-radius: 22px;
 }
+
 /* ==========================================
-   HOME + ABOUT WRAPPER
+   HERO + ABOUT + PROJECTS WRAPPER
 ========================================== */
 
 .home-about-wrapper {
@@ -94,28 +90,19 @@ svg {
   padding: 0;
 
   background: var(--olive);
-
   border-radius: 42px;
+
   overflow: clip;
   isolation: isolate;
 }
 
 .home-about-wrapper > .hero-section,
-.home-about-wrapper > .about-section {
+.home-about-wrapper > .about-section,
+.home-about-wrapper > .projects-section {
   flex: none;
+  width: 100%;
   margin: 0;
   border-radius: 0;
-}
-
-/* ==========================================
-   SECTION SCROLL OFFSETS
-========================================== */
-
-#home,
-#about,
-#projects,
-#contact {
-  scroll-margin-top: calc(var(--navbar-height) + 20px);
 }
 
 /* ==========================================
@@ -147,10 +134,8 @@ svg {
 
   .portfolio-shell {
     width: calc(100% - 16px);
-
     margin: 8px auto;
     padding: 8px;
-
     border-radius: 18px;
   }
 

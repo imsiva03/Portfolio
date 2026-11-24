@@ -1,18 +1,18 @@
 
 /* ==========================================
-   NAVBAR - FOOTER MATCHING THEME
+   NAVBAR THEME
 ========================================== */
 
 .portfolio-navbar {
-  --nav-bg: #555740;
-  --nav-accent: #d4ff42;
-  --nav-text: #f6f5ef;
-  --nav-muted: #bfc0c0;
+  --nav-bg: #d9ddb8;
+  --nav-accent: #777e45;
+  --nav-text: #1b1d14;
+  --nav-muted: #555942;
 
   position: fixed;
   top: 16px;
   left: 50%;
-  z-index: 99999;
+  z-index: 9999;
 
   width: min(calc(100% - 64px), 1480px);
   margin: 0;
@@ -22,7 +22,7 @@
   background: var(--nav-bg);
   color: var(--nav-text);
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(27, 29, 20, 0.12);
   border-radius: 22px;
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
@@ -63,10 +63,10 @@
   width: 52px;
   height: 52px;
 
-  border: 1px solid var(--nav-accent);
+  border: 1px solid #1b1d14;
   border-radius: 50%;
 
-  background: var(--nav-accent);
+  background: #f7f4e7;
   color: #1b1d14;
 
   font-size: 18px;
@@ -80,11 +80,11 @@
 
 .portfolio-navbar-logo:hover {
   transform: rotate(-8deg) scale(1.05);
-  background: #e4ff83;
+  background: #eee9d7;
 }
 
 /* ==========================================
-   DESKTOP LINKS
+   DESKTOP NAVIGATION
 ========================================== */
 
 .portfolio-navbar-links {
@@ -110,7 +110,7 @@
   transition: color 0.3s ease;
 }
 
-/* Underline */
+/* Active underline */
 
 .portfolio-navbar-link::after {
   content: "";
@@ -132,7 +132,7 @@
 
 .portfolio-navbar-link:hover,
 .portfolio-navbar-link.is-active {
-  color: var(--nav-accent);
+  color: #555942;
 }
 
 .portfolio-navbar-link:hover::after,
@@ -141,7 +141,7 @@
 }
 
 /* ==========================================
-   MOBILE TOGGLE
+   MOBILE MENU BUTTON
 ========================================== */
 
 .portfolio-navbar-toggle {
@@ -153,7 +153,7 @@
   height: 44px;
   padding: 0;
 
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(27, 29, 20, 0.2);
   border-radius: 50%;
 
   background: transparent;
@@ -167,7 +167,7 @@
 }
 
 .portfolio-navbar-toggle:hover {
-  background: var(--nav-accent);
+  background: #eee9d7;
   color: #1b1d14;
 }
 
@@ -180,7 +180,7 @@
 }
 
 /* ==========================================
-   TABLET / MOBILE
+   RESPONSIVE NAVBAR
 ========================================== */
 
 @media (max-width: 768px) {
@@ -209,8 +209,6 @@
     display: inline-flex;
   }
 
-  /* Dropdown opens inside fixed header */
-
   .portfolio-mobile-menu {
     display: flex;
     flex-direction: column;
@@ -223,7 +221,7 @@
     overflow: hidden;
 
     transition:
-      max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      max-height 0.4s cubic-bezier(.22, 1, .36, 1),
       padding 0.4s ease,
       opacity 0.3s ease,
       visibility 0.3s ease;
@@ -244,7 +242,7 @@
 
     padding: 16px 4px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-bottom: 1px solid rgba(27, 29, 20, 0.14);
 
     color: var(--nav-text);
     text-decoration: none;
@@ -263,7 +261,7 @@
 
   .portfolio-mobile-link:hover,
   .portfolio-mobile-link.is-active {
-    color: var(--nav-accent);
+    color: #555942;
     padding-left: 9px;
   }
 
@@ -273,7 +271,7 @@
 }
 
 /* ==========================================
-   ACCESSIBILITY
+   FOCUS ACCESSIBILITY
 ========================================== */
 
 .portfolio-navbar a:focus-visible,
@@ -282,163 +280,14 @@
   outline-offset: 4px;
 }
 
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
 @media (prefers-reduced-motion: reduce) {
   .portfolio-navbar *,
   .portfolio-navbar *::before,
   .portfolio-navbar *::after {
     transition: none !important;
-  }
-}
-/* Previous navbar colour theme */
-
-.portfolio-navbar {
-  --nav-bg: #d9ddb8;
-  --nav-accent: #a5aa69;
-  --nav-text: #1b1d14;
-  --nav-muted: #555942;
-
-  background: var(--nav-bg);
-  color: var(--nav-text);
-}
-
-/* Logo */
-
-.portfolio-navbar-logo {
-  background: #f7f4e7;
-  color: #1b1d14;
-  border-color: #1b1d14;
-}
-
-.portfolio-navbar-logo:hover {
-  background: #eee9d7;
-}
-
-/* Navigation links */
-
-.portfolio-navbar-link {
-  color: #1b1d14;
-}
-
-.portfolio-navbar-link:hover,
-.portfolio-navbar-link.is-active {
-  color: #555942;
-}
-
-/* Active underline */
-
-.portfolio-navbar-link::after {
-  background: #777e45;
-}
-
-/* Mobile menu button */
-
-.portfolio-navbar-toggle {
-  color: #1b1d14;
-  border-color: rgba(27, 29, 20, 0.2);
-}
-
-/* Mobile menu links */
-
-.portfolio-mobile-link {
-  color: #1b1d14;
-}
-
-.portfolio-mobile-link:hover,
-.portfolio-mobile-link.is-active {
-  color: #555942;
-}
-
-.portfolio-mobile-link {
-  border-bottom-color: rgba(27, 29, 20, 0.14);
-}
-
-/* ==========================================
-   HERO - LARGER ICONS & BUTTONS
-========================================== */
-
-/* GH / LinkedIn circular buttons */
-
-.hero-section a[aria-label*="GitHub"],
-.hero-section a[aria-label*="LinkedIn"] {
-  width: 58px;
-  height: 58px;
-  min-width: 58px;
-  min-height: 58px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-  font-size: 17px;
-  font-weight: 750;
-}
-
-/* Enlarge SVG icons in hero links and buttons */
-
-.hero-section a svg,
-.hero-section button svg {
-  width: 23px;
-  height: 23px;
-  flex-shrink: 0;
-}
-
-/* Larger CTA buttons */
-
-.hero-section a[href="#projects"],
-.hero-section a[href="#contact"] {
-  min-height: 62px;
-  padding: 16px 30px;
-  font-size: 18px;
-  gap: 14px;
-}
-
-/* Larger scroll indicator */
-
-.hero-section [class*="scroll"] svg {
-  width: 28px;
-  height: 28px;
-}
-
-.hero-section [class*="scroll"] {
-  font-size: 18px;
-}
-
-/* Circular hero badge */
-
-.hero-section [class*="badge"] {
-  transform: scale(1.15);
-  transform-origin: center;
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 768px) {
-  .hero-section a[aria-label*="GitHub"],
-  .hero-section a[aria-label*="LinkedIn"] {
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
-    min-height: 46px;
-    font-size: 14px;
-  }
-
-  .hero-section a svg,
-  .hero-section button svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .hero-section a[href="#projects"],
-  .hero-section a[href="#contact"] {
-    min-height: 52px;
-    padding: 12px 20px;
-    font-size: 15px;
-  }
-
-  .hero-section [class*="badge"] {
-    transform: scale(1.05);
   }
 }

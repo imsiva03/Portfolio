@@ -44,15 +44,15 @@
   }
 
   .cursor-dot {
-    width: 5px;
-    height: 5px;
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
     background: #d4ff42;
   }
 
   .custom-cursor.cursor-hover {
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
     background: #4d5237;
   }
 }

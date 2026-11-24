@@ -1,6 +1,6 @@
 
 /* ==========================================
-   ABOUT SECTION
+   ABOUT SECTION + BACKGROUND TRANSITION
 ========================================== */
 
 .about-section {
@@ -11,12 +11,46 @@
 
   position: relative;
   width: 100%;
-  padding: 100px 0 115px;
 
-  background: var(--about-bg);
+  min-height: calc(100svh - 100px);
+  padding: 30px 0;
+
+  display: flex;
+  align-items: center;
+
+  background: linear-gradient(
+    180deg,
+    #a5aa69 0%,
+    #aeb47b 25%,
+    #b7bc8b 60%,
+    #c0c59b 100%
+  );
+
   color: var(--about-ink);
-
   overflow: hidden;
+}
+
+/* Decorative boundary */
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: 75%;
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(247, 244, 231, 0.6),
+    transparent
+  );
+
+  pointer-events: none;
 }
 
 .about-section *,
@@ -55,8 +89,6 @@
   width: 100%;
 }
 
-/* ABOUT LABEL */
-
 .about-label {
   display: flex;
   align-items: center;
@@ -81,7 +113,7 @@
 }
 
 /* ==========================================
-   HEADING
+   ABOUT HEADING
 ========================================== */
 
 .about-heading {
@@ -107,7 +139,7 @@
 }
 
 /* ==========================================
-   DESCRIPTION
+   ABOUT TEXT
 ========================================== */
 
 .about-intro {
@@ -168,20 +200,18 @@
 }
 
 /* ==========================================
-   MOVING SKILLS
+   MOVING TECHNOLOGY SKILLS
 ========================================== */
 
 .about-skills-section {
   width: 100%;
   max-width: 600px;
   min-width: 0;
-
   margin-top: 45px;
 }
 
 .about-skills-label {
   display: block;
-
   margin-bottom: 20px;
 
   font-size: 11px;
@@ -190,8 +220,6 @@
 
   color: var(--about-dark);
 }
-
-/* Fade at both edges */
 
 .about-skills-viewport {
   width: 100%;
@@ -214,8 +242,6 @@
   );
 }
 
-/* Automatically moving track */
-
 .about-skills-track {
   display: flex;
   align-items: center;
@@ -226,8 +252,6 @@
   will-change: transform;
 }
 
-/* Identical groups ensure seamless scrolling */
-
 .about-skills-group {
   display: flex;
   align-items: center;
@@ -236,8 +260,6 @@
   gap: 26px;
   padding-right: 26px;
 }
-
-/* Individual skill */
 
 .about-skill-item {
   display: flex;
@@ -251,7 +273,6 @@
   border-radius: 999px;
 
   background: rgba(247, 244, 231, 0.2);
-
   white-space: nowrap;
 
   transition:
@@ -285,8 +306,6 @@
   color: var(--about-dark);
 }
 
-/* Scroll continuously to the left */
-
 @keyframes aboutSkillsMarquee {
   from {
     transform: translateX(0);
@@ -296,8 +315,6 @@
     transform: translateX(-50%);
   }
 }
-
-/* Hover to pause */
 
 .about-skills-viewport:hover .about-skills-track {
   animation-play-state: paused;
@@ -310,18 +327,17 @@
 .about-visual {
   position: relative;
 
-  width: 100%;
-  min-width: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 100%;
+  min-width: 0;
   padding-bottom: 20px;
 }
 
 /* ==========================================
-   DARK IMAGE CARD
+   IMAGE CARD
 ========================================== */
 
 .about-image-card {
@@ -342,10 +358,6 @@
 
   overflow: hidden;
 }
-
-/* ==========================================
-   CARD HEADER
-========================================== */
 
 .about-card-header {
   display: flex;
@@ -377,12 +389,10 @@
 
 .about-card-image {
   position: relative;
-
   flex: 1 1 auto;
 
   width: 100%;
   min-height: 350px;
-
   margin: 25px 0;
 
   overflow: hidden;
@@ -391,14 +401,11 @@
   background: #282e22;
 }
 
-/* Slightly reduced image - not excessively shrunk */
-
 .about-card-image .about-illustration {
   object-fit: cover;
   object-position: center;
 
   transform: scale(0.97);
-
   border-radius: 15px;
 
   transition: transform 0.5s ease;
@@ -418,7 +425,6 @@
   justify-content: space-between;
 
   gap: 15px;
-
   padding-top: 22px;
 
   border-top: 1px solid rgba(247, 244, 231, 0.25);
@@ -447,7 +453,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   gap: 16px;
 
   padding: 17px 24px;
@@ -481,7 +486,7 @@
 
 @media (max-width: 1200px) {
   .about-section {
-    padding: 80px 0 90px;
+    padding: 25px 0 ;
   }
 
   .about-container {
@@ -537,10 +542,6 @@
     max-width: 620px;
     min-height: 520px;
   }
-
-  .about-visual {
-    justify-content: center;
-  }
 }
 
 /* ==========================================
@@ -549,7 +550,7 @@
 
 @media (max-width: 600px) {
   .about-section {
-    padding: 65px 0 75px;
+    padding: 25px 0 ;
   }
 
   .about-container {
@@ -589,7 +590,7 @@
     font-size: 16px;
   }
 
-  /* SKILLS */
+  /* Skills */
 
   .about-skills-section {
     margin-top: 35px;
@@ -618,7 +619,7 @@
     font-size: 12px;
   }
 
-  /* IMAGE CARD */
+  /* Image card */
 
   .about-visual {
     padding-bottom: 20px;
@@ -658,7 +659,6 @@
     bottom: 0;
 
     padding: 13px 17px;
-
     font-size: 10px;
     gap: 10px;
   }

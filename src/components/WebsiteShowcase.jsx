@@ -490,6 +490,8 @@ export default function WebsiteShowcase() {
 
   return (
     <section
+      id="website-showcase"
+
       className="website-showcase"
       aria-labelledby="website-showcase-title"
     >

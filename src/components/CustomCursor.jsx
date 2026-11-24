@@ -58,11 +58,7 @@ export default function CustomCursor() {
       }}
       aria-hidden="true"
     >
-      {hovering ? (
-        <ArrowUpRight size={19} strokeWidth={2.5} />
-      ) : (
-        <span className="cursor-dot" />
-      )}
+     <span className="cursor-dot" />
     </div>
   );
 }
