@@ -8,7 +8,7 @@ import {
   Heart,
 } from "lucide-react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Footer.css";
 
 /* ==========================================
@@ -62,6 +62,21 @@ function LinkedinIcon({ size = 19 }) {
 ========================================== */
 
 export default function Footer() {
+  const footerRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setVisible(true);
+      observer.disconnect();
+    }, { threshold: 0.08 });
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   const [year, setYear] = useState(2026);
 
   useEffect(() => {
@@ -80,7 +95,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="footer-section" id="contact">
+    <footer ref={footerRef} className="footer-section" id="contact" data-visible={visible}>
       <div className="footer-container">
 
         {/* MAIN FOOTER */}

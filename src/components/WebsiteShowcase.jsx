@@ -379,9 +379,23 @@ export default function WebsiteShowcase() {
      POINTER DRAG / MOBILE SWIPE
   ======================================== */
 
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    function slideWithWheel(event) {
+      const distance = event.shiftKey ? event.deltaX || event.deltaY : event.deltaX;
+      if (!distance || (!event.shiftKey && Math.abs(distance) < Math.abs(event.deltaY))) return;
+      event.preventDefault();
+      const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientWidth : 1;
+      manualMoveRef.current = null;
+      if (reducedMotion) viewport.scrollLeft += distance * unit;
+      else positionRef.current += distance * unit;
+    }
+    viewport.addEventListener("wheel", slideWithWheel, { passive: false });
+    return () => viewport.removeEventListener("wheel", slideWithWheel);
+  }, [reducedMotion]);
+
   const handlePointerDown = (event) => {
     if (
-      reducedMotion ||
       !event.isPrimary ||
       (event.pointerType === "mouse" &&
         event.button !== 0)
@@ -398,12 +412,12 @@ export default function WebsiteShowcase() {
       velocity: 0,
       id: event.pointerId,
       x: event.clientX,
-      position: positionRef.current,
+      position: reducedMotion ? event.currentTarget.scrollLeft : positionRef.current,
     };
 
     syncPause();
 
-    event.target.setPointerCapture(event.pointerId);
+    // Capture only after movement so taps still reach the card link.
   };
 
   const handlePointerMove = (event) => {
@@ -414,7 +428,12 @@ export default function WebsiteShowcase() {
 
       const deltaX = event.clientX - pointer.x;
       if (!draggedRef.current && Math.abs(deltaX) < 6) return;
+      if (!draggedRef.current) event.currentTarget.setPointerCapture(event.pointerId);
       draggedRef.current = true;
+      if (reducedMotion) {
+        event.currentTarget.scrollLeft = pointer.position - deltaX;
+        return;
+      }
       pointer.velocity = (pointer.lastX - event.clientX) / Math.max(1, event.timeStamp - pointer.lastTime);
       pointer.lastX = event.clientX;
       pointer.lastTime = event.timeStamp;
@@ -458,7 +477,7 @@ export default function WebsiteShowcase() {
       return;
     }
 
-    if (pointer && draggedRef.current && event.type === "pointerup" && event.timeStamp - pointer.lastTime < 100) {
+    if (!reducedMotion && pointer && draggedRef.current && event.type === "pointerup" && event.timeStamp - pointer.lastTime < 100) {
       const speed = Math.max(-8, Math.min(8, pointer.velocity));
       manualMoveRef.current = {
         from: positionRef.current,
@@ -563,6 +582,7 @@ export default function WebsiteShowcase() {
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onPointerMove={handlePointerMove}
+        onDragStart={(event) => event.preventDefault()}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}

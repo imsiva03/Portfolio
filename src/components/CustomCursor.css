@@ -1,70 +1,83 @@
+.custom-cursor {
+  display: none;
+}
 
-/* Custom cursor - desktop only */
-
-@media (hover: hover) and (pointer: fine) {
-  body,
-  a,
-  button,
-  .ws-card {
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body:has(.cursor-visible),
+  body:has(.cursor-visible) :is(a, button, [role="button"]) {
     cursor: none !important;
   }
 
   .custom-cursor {
     position: fixed;
     z-index: 99999;
-
+    display: grid;
+    place-items: center;
     width: 30px;
     height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #4d5237;
-    border: 2px solid #f7f4e7;
+    border: 0;
     border-radius: 50%;
-
     color: #d4ff42;
-
+    background: transparent;
     pointer-events: none;
-
     opacity: 0;
-
-    transform: translate(-50%, -50%);
-
-    transition:
-      width 0.2s ease,
-      height 0.2s ease,
-      background-color 0.2s ease,
-      opacity 0.2s ease;
+    transform: translate(-50%, -50%) scale(.8);
+    transition: transform .24s ease, opacity .16s ease, background-color .24s ease, color .24s ease;
   }
 
   .custom-cursor.cursor-visible {
     opacity: 1;
-  }
-
-  .cursor-dot {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #d4ff42;
+    transform: translate(-50%, -50%);
   }
 
   .custom-cursor.cursor-hover {
-    width: 40px;
-    height: 40px;
-    background: #4d5237;
+    color: #30351f;
+    background: transparent;
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+
+  .cursor-dot,
+  .cursor-arrow {
+    grid-area: 1 / 1;
+    transition: opacity .2s ease, transform .24s ease;
+  }
+
+  .cursor-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .cursor-arrow {
+    opacity: 0;
+    transform: translate(-3px, 3px) scale(.65);
+  }
+
+  .cursor-hover .cursor-dot {
+    opacity: 0;
+    transform: scale(.4);
+  }
+
+  .cursor-hover .cursor-arrow {
+    opacity: 1;
+    transform: none;
   }
 }
 
-@media (hover: none), (pointer: coarse) {
-  .custom-cursor {
-    display: none;
-  }
+
+.custom-cursor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 1px solid #f7f4e7;
+  border-radius: 50%;
+  background: #4d5237;
+  transform: rotate(var(--cursor-angle, 0rad)) scaleX(var(--cursor-stretch, 1));
+  transition: background-color .24s ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .custom-cursor {
-    transition: none;
-  }
+.custom-cursor.cursor-hover::before {
+  background: #d4ff42;
 }

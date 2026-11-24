@@ -61,7 +61,7 @@ export default function Hero() {
             </svg>
 
             <span className="hero-stamp-center">
-              <Image src="/images/siva-portrait.jpg" alt="Sivasankaran N M" fill sizes="80px" style={{ objectFit: "cover", borderRadius: "50%" }} />
+              <Image src="/images/siva-portrait.jpg" alt="Sivasankaran N M" fill sizes="90px" style={{ objectFit: "cover", borderRadius: "50%" }} />
             </span>
           </div>
 

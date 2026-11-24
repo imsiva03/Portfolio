@@ -738,3 +738,4 @@
 
 .ws-card { text-decoration: none; user-select: none; }
 @media (prefers-reduced-motion: reduce) { .ws-marquee-viewport { touch-action: auto; } }
+@media (prefers-reduced-motion: reduce) { .website-showcase .ws-marquee-viewport { overflow-x: auto; touch-action: pan-y; } }
