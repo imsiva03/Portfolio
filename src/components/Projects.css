@@ -14,7 +14,13 @@
   width: 100%;
   padding: 100px 0 110px;
 
-  background: var(--projects-bg);
+  background-image:
+    radial-gradient(ellipse at 14% 16%, rgba(162, 169, 108, 0.2), transparent 40%),
+    radial-gradient(ellipse at 88% 82%, rgba(245, 224, 166, 0.26), transparent 42%),
+    linear-gradient(135deg, #eee9d7 0%, #f2eedf 48%, #e8e3cf 100%);
+  background-size: 180% 180%, 180% 180%, 100% 100%;
+  background-position: 0% 35%, 100% 65%, 0 0;
+  animation: portfolioGradientDrift 32s ease-in-out infinite alternate;
   color: var(--projects-text);
 
   overflow: hidden;
@@ -771,6 +777,10 @@
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .projects-section {
+    animation: none;
+  }
+
   .project-image-backdrop,
   .project-image,
   .project-view-link,

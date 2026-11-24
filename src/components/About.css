@@ -18,13 +18,13 @@
   display: flex;
   align-items: center;
 
-  background: linear-gradient(
-    180deg,
-    #a5aa69 0%,
-    #aeb47b 25%,
-    #b7bc8b 60%,
-    #c0c59b 100%
-  );
+  background-image:
+    radial-gradient(ellipse at 18% 18%, rgba(249, 244, 209, 0.42), transparent 40%),
+    radial-gradient(ellipse at 82% 78%, rgba(91, 100, 57, 0.2), transparent 42%),
+    linear-gradient(180deg, #a5aa69 0%, #aeb47b 35%, #b7bc8b 68%, #c0c59b 100%);
+  background-size: 180% 180%, 180% 180%, 100% 100%;
+  background-position: 0% 35%, 100% 65%, 0 0;
+  animation: portfolioGradientDrift 28s ease-in-out infinite alternate;
 
   color: var(--about-ink);
   overflow: hidden;
@@ -312,13 +312,11 @@
   }
 
   to {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 
-.about-skills-viewport:hover .about-skills-track {
-  animation-play-state: paused;
-}
+
 
 /* ==========================================
    RIGHT VISUAL
@@ -674,6 +672,10 @@
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .about-section {
+    animation: none;
+  }
+
   .about-skills-track {
     animation: none;
   }
@@ -688,4 +690,19 @@
   .about-illustration {
     transition: none !important;
   }
+}
+
+.about-section {
+  flex-direction: column;
+  justify-content: center;
+}
+.about-section > .about-skills-section {
+  max-width: none;
+}
+.about-skills-label {
+  width: min(calc(100% - 40px), 1440px);
+  margin-inline: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-skills-group[aria-hidden="true"] { display: none; }
 }

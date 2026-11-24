@@ -146,11 +146,11 @@ function WebsitePreview({ website }) {
 
 function WebsiteCard({ website, duplicate = false }) {
   return (
-    <article
+    <a href={website.url} target="_blank" rel="noopener noreferrer" draggable={false} tabIndex={duplicate ? -1 : 0}
       className={`ws-card ws-${website.theme}`}
       aria-label={`${website.name} project`}
       aria-hidden={duplicate ? true : undefined}
-      inert={duplicate}
+
     >
       <div className="ws-card-top">
         <span className="ws-category">
@@ -170,20 +170,14 @@ function WebsiteCard({ website, duplicate = false }) {
       <div className="ws-card-footer">
         <strong>{website.domain}</strong>
 
-        <a
-          href={website.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Visit ${website.name}`}
-          tabIndex={duplicate ? -1 : 0}
-        >
+        <span className="ws-visit-icon">
           <ArrowUpRight
             size={20}
             aria-hidden="true"
           />
-        </a>
+        </span>
       </div>
-    </article>
+    </a>
   );
 }
 
@@ -197,6 +191,7 @@ export default function WebsiteShowcase() {
 
   const positionRef = useRef(0);
   const pointerRef = useRef(null);
+  const draggedRef = useRef(false);
 
   const hoveredRef = useRef(false);
   const focusedRef = useRef(false);
@@ -387,7 +382,7 @@ export default function WebsiteShowcase() {
   const handlePointerDown = (event) => {
     if (
       reducedMotion ||
-      event.target.closest("a") ||
+      !event.isPrimary ||
       (event.pointerType === "mouse" &&
         event.button !== 0)
     ) {
@@ -396,7 +391,11 @@ export default function WebsiteShowcase() {
 
     manualMoveRef.current = null;
 
+    draggedRef.current = false;
     pointerRef.current = {
+      lastX: event.clientX,
+      lastTime: event.timeStamp,
+      velocity: 0,
       id: event.pointerId,
       x: event.clientX,
       position: positionRef.current,
@@ -404,9 +403,7 @@ export default function WebsiteShowcase() {
 
     syncPause();
 
-    event.currentTarget.setPointerCapture(
-      event.pointerId
-    );
+    event.target.setPointerCapture(event.pointerId);
   };
 
   const handlePointerMove = (event) => {
@@ -416,6 +413,11 @@ export default function WebsiteShowcase() {
       if (pointer.id !== event.pointerId) return;
 
       const deltaX = event.clientX - pointer.x;
+      if (!draggedRef.current && Math.abs(deltaX) < 6) return;
+      draggedRef.current = true;
+      pointer.velocity = (pointer.lastX - event.clientX) / Math.max(1, event.timeStamp - pointer.lastTime);
+      pointer.lastX = event.clientX;
+      pointer.lastTime = event.timeStamp;
 
       const firstSet =
         trackRef.current?.querySelector(
@@ -456,6 +458,14 @@ export default function WebsiteShowcase() {
       return;
     }
 
+    if (pointer && draggedRef.current && event.type === "pointerup" && event.timeStamp - pointer.lastTime < 100) {
+      const speed = Math.max(-8, Math.min(8, pointer.velocity));
+      manualMoveRef.current = {
+        from: positionRef.current,
+        to: positionRef.current + speed * MANUAL_DURATION / 3,
+        start: null,
+      };
+    }
     pointerRef.current = null;
 
     if (
@@ -547,6 +557,9 @@ export default function WebsiteShowcase() {
       <div
         ref={viewportRef}
         className="ws-marquee-viewport"
+        onClickCapture={(event) => {
+          if (event.detail && draggedRef.current) event.preventDefault();
+        }}
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onPointerMove={handlePointerMove}
@@ -582,7 +595,7 @@ export default function WebsiteShowcase() {
             <div
               className="ws-card-set"
               aria-hidden="true"
-              inert
+
             >
               {websites.map((website) => (
                 <WebsiteCard
@@ -611,7 +624,7 @@ export default function WebsiteShowcase() {
             <div
               className="ws-card-set"
               aria-hidden="true"
-              inert
+
             >
               {websites.map((website) => (
                 <WebsiteCard

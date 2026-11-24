@@ -222,6 +222,8 @@ function MovingSkills() {
         <div className="about-skills-track">
           <SkillGroup />
           <SkillGroup duplicate />
+          <SkillGroup duplicate />
+          <SkillGroup duplicate />
         </div>
       </div>
     </div>
@@ -302,7 +304,7 @@ export default function About() {
 
           {/* MOVING TECHNOLOGY LOGOS */}
 
-          <MovingSkills />
+
         </div>
 
         {/* RIGHT IMAGE */}
@@ -359,6 +361,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      <MovingSkills />
     </section>
   );
 }

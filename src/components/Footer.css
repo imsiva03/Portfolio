@@ -32,6 +32,9 @@
       transparent 28%
     ),
     var(--footer-bg);
+  background-size: 180% 180%, 180% 180%, 100% 100%;
+  background-position: 0% 35%, 100% 65%, 0 0;
+  animation: portfolioGradientDrift 34s ease-in-out infinite alternate;
 
   color: var(--footer-white);
 }
@@ -631,6 +634,10 @@
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .footer-section {
+    animation: none;
+  }
+
   .footer-cta,
   .footer-cta svg,
   .footer-contact-link,

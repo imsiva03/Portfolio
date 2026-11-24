@@ -1,4 +1,5 @@
 
+import Image from "next/image";
 import "./Hero.css";
 
 import { profile } from "@/data/profile";
@@ -10,7 +11,9 @@ import {
 export default function Hero() {
   return (
     <section id="home" className="hero-section">
-      {/* BACKGROUND DECORATION */}
+      <svg className="hero-contour" viewBox="0 0 560 32" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H560C527 0 543 32 504 32H56C17 32 33 0 0 0Z" fill="currentColor" />
+      </svg>
       <div
         className="hero-ambient"
         aria-hidden="true"
@@ -22,11 +25,9 @@ export default function Hero() {
       <div className="hero-content">
         {/* MAIN HEADING */}
         <h1 className="hero-title">
-          <span>
-            Hi, I'm Siva — a Full Stack Developer
-            <br className="hero-title-break" />
-            {" "}building web apps that people love.
-          </span>
+          {"Hi, I’m Siva — a Full Stack Developer building web apps that people love.".split(" ").map((word, index) => (
+            <em key={index} style={{ "--word-delay": index * 45 + "ms" }}>{word}{" "}</em>
+          ))}
         </h1>
 
         {/* ACTIONS */}
@@ -53,14 +54,14 @@ export default function Hero() {
               </defs>
 
               <text>
-                <textPath href="#hero-stamp-circle">
+                <textPath href="#hero-stamp-circle" textLength="265" lengthAdjust="spacing">
                   FULL STACK DEV · SIVASANKARAN ·
                 </textPath>
               </text>
             </svg>
 
             <span className="hero-stamp-center">
-              {profile.initials || "SN"}
+              <Image src="/images/siva-portrait.jpg" alt="Sivasankaran N M" fill sizes="80px" style={{ objectFit: "cover", borderRadius: "50%" }} />
             </span>
           </div>
 
@@ -127,3 +128,5 @@ export default function Hero() {
     </section>
   );
 }
+
+

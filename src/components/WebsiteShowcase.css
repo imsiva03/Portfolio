@@ -9,7 +9,13 @@
 
   width: 100%;
   padding: 55px 0 85px;
-  background: var(--showcase-bg);
+  background-image:
+    radial-gradient(ellipse at 16% 24%, rgba(162, 169, 108, 0.2), transparent 38%),
+    radial-gradient(ellipse at 86% 80%, rgba(233, 213, 158, 0.28), transparent 40%),
+    linear-gradient(135deg, #eee9d7 0%, #f4f0e3 50%, #e9e5d2 100%);
+  background-size: 180% 180%, 180% 180%, 100% 100%;
+  background-position: 0% 35%, 100% 65%, 0 0;
+  animation: portfolioGradientDrift 30s ease-in-out infinite alternate;
   color: #1b1d14;
   overflow: hidden;
 }
@@ -462,7 +468,7 @@
   overflow-wrap: anywhere;
 }
 
-.ws-card-footer a {
+.ws-visit-icon {
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -482,13 +488,13 @@
     color 0.3s ease;
 }
 
-.ws-card-footer a:hover {
+.ws-card:hover .ws-visit-icon {
   background: var(--card-ink);
   color: var(--card-bg);
   transform: scale(1.08);
 }
 
-.ws-card-footer a:focus-visible {
+.ws-card:focus-visible .ws-visit-icon {
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
@@ -595,6 +601,10 @@
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .website-showcase {
+    animation: none;
+  }
+
   .ws-marquee-viewport {
     overflow-x: auto;
     cursor: auto;
@@ -606,7 +616,7 @@
   }
 
   .ws-nav-button,
-  .ws-card-footer a {
+  .ws-visit-icon {
     transition: none;
   }
 }
@@ -725,3 +735,6 @@
     height: 38px;
   }
 }
+
+.ws-card { text-decoration: none; user-select: none; }
+@media (prefers-reduced-motion: reduce) { .ws-marquee-viewport { touch-action: auto; } }

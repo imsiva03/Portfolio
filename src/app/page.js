@@ -15,6 +15,7 @@ export default function Home() {
         <div className="home-about-wrapper">
           <Hero />
           <About />
+          <div className="skill-ribbon"><div><span>Full Stack Development ✦ React ✦ Database Design ✦</span><span aria-hidden="true">Full Stack Development ✦ React ✦ Database Design ✦</span></div></div>
           <Projects />
         </div>
 
@@ -25,3 +26,4 @@ export default function Home() {
     </>
   );
 }
+
