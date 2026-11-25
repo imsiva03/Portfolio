@@ -219,13 +219,7 @@ export default function Footer() {
                 •
               </span>
 
-              Designed with
-
-              <Heart
-                size={16}
-                className="footer-heart"
-                aria-label="love"
-              />
+             
             </span>
 
             {/* BACK TO TOP BUTTON */}

@@ -174,7 +174,7 @@ body .portfolio-navbar {width:var(--portfolio-width);border-radius:40px;backgrou
 .home-about-wrapper > .about-section {background:transparent;animation:none}
 .home-about-wrapper .about-heading-accent {color:#60663d}
 .skill-ribbon {overflow:hidden;width:100%;padding-block:clamp(20px,3vw,40px) 0;color:#24291e}
-.skill-ribbon div {display:flex;width:max-content;animation:ribbon-travel 32s linear infinite}
+.skill-ribbon div {display:flex;width:max-content;animation:ribbon-travel 32s linear infinite reverse}
 .skill-ribbon span {display:block;font-size:clamp(34px,5vw,82px);font-weight:700;letter-spacing:-.05em;white-space:nowrap;padding-right:.35em}
 @keyframes ribbon-travel {to {transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.skill-ribbon div{animation:none;width:auto}.skill-ribbon span{white-space:normal}.skill-ribbon span[aria-hidden]{display:none}}
