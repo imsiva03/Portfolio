@@ -20,7 +20,11 @@
   }
 
   .cursor-follower.is-visible {
-    opacity: .9;
-    transition: opacity .18s ease, transform 90ms ease-out;
+    opacity: .8;
+    transition: opacity .18s ease, transform 200ms linear;
   }
+}
+
+.cursor-follower.over-footer {
+  background: var(--cream, #f7f4e7);
 }

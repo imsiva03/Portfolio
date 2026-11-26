@@ -6,7 +6,7 @@ export default function Projects() {
   return (
     <section id="projects" className="work-gallery">
       <p>Portfolio</p>
-      <h2>Selected Work</h2>
+      <h2>My Works</h2>
       <div className="project-stack">
       {projects.map(project => (
         <article key={project.id}>

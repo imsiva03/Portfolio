@@ -8,7 +8,7 @@
   --project-radius: 24px;
 
   width: 100%;
-  padding: 55px 0 85px;
+  /* padding: 55px 0 85px; */
   background-image:
     radial-gradient(ellipse at 16% 24%, rgba(162, 169, 108, 0.2), transparent 38%),
     radial-gradient(ellipse at 86% 80%, rgba(233, 213, 158, 0.28), transparent 40%),
@@ -507,7 +507,7 @@
   .ws-card {
     width: 340px;
     height: 475px;
-    padding: 22px;
+    /* padding: 22px; */
   }
 
   .ws-brand h3 {

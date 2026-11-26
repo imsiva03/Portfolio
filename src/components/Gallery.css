@@ -32,11 +32,11 @@
 }
 
 @media (prefers-reduced-motion: no-preference) and (min-height: 660px) {
-  .project-stack { gap: clamp(96px, 22svh, 240px); }
+  .project-stack { gap: clamp(96px, 10svh, 240px); }
 
   .project-stack article {
     position: sticky;
-    top: calc(var(--navbar-height) + 20px);
+    top: calc(var(--navbar-height) + 44px);
   }
 
   .project-stack article:focus-within {
@@ -57,4 +57,23 @@
   .work-image {transition: transform .35s ease, box-shadow .35s ease}
   .work-image:hover {transform: translateY(-6px) scale(1.025)}
   .work-image:hover img {transform: scale(1.06)}
+}
+
+@media (max-width: 767px) {
+  .project-stack {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .project-stack article {
+    position: static;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .project-stack .work-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
 }

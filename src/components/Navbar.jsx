@@ -9,6 +9,7 @@ import "./Navbar.css";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Experience", href: "/#experience" },
   { label: "Work", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
@@ -16,6 +17,7 @@ const navLinks = [
 const sectionIds = [
   "home",
   "about",
+  "experience",
   "projects",
   "website-showcase",
   "contact",
@@ -161,7 +163,7 @@ export default function Navbar() {
 
         <div className="portfolio-navbar-links">
           {navLinks.map((link) => {
-            const isActive = active === link.href;
+            const isActive = active === link.href.replace(/^\//, "");
 
             return (
               <a
@@ -215,7 +217,7 @@ export default function Navbar() {
         inert={!menuOpen}
       >
         {navLinks.map((link) => {
-          const isActive = active === link.href;
+          const isActive = active === link.href.replace(/^\//, "");
 
           return (
             <a

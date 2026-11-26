@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import "./WebsiteShowcase.css";
+import { observeAnimationVisibility } from "./animationVisibility";
 
 /* ==========================================
    PROJECT DATA
@@ -302,9 +303,21 @@ export default function WebsiteShowcase() {
       frameId = requestAnimationFrame(animate);
     };
 
-    frameId = requestAnimationFrame(animate);
+    const stopObserving = observeAnimationVisibility(viewportRef.current, (active) => {
+      previousTime = 0;
+      if (active) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        cancelAnimationFrame(frameId);
+        if (manualMoveRef.current) {
+          manualMoveRef.current.from = positionRef.current;
+          manualMoveRef.current.start = null;
+        }
+      }
+    });
 
     return () => {
+      stopObserving();
       cancelAnimationFrame(frameId);
     };
   }, [reducedMotion]);
