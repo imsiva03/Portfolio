@@ -21,5 +21,6 @@
 
   .cursor-follower.is-visible {
     opacity: .9;
+    transition: opacity .18s ease, transform 90ms ease-out;
   }
 }

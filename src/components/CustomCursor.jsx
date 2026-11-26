@@ -9,7 +9,7 @@ export default function CustomCursor() {
   useEffect(() => {
     const follower = followerRef.current;
     const media = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
-    const delay = 1000;
+    const delay = 200;
     const positions = [];
     let frame = 0;
     let hero = null;
