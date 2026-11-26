@@ -2,56 +2,48 @@
 .skill-ribbon + .work-gallery {padding-top:clamp(20px,3vw,36px)}
 .work-gallery > p {margin:0 0 8px;text-transform:uppercase;color:#62683f;font-weight:700;letter-spacing:.08em}
 .work-gallery h2 {font-size:clamp(40px,5vw,82px);letter-spacing:-.055em;margin:0}
-.work-gallery article {width:min(66%,900px);margin:clamp(50px,7vw,110px) 0}
-.work-gallery article:nth-of-type(even) {margin-left:auto}
 .work-image {position:relative;aspect-ratio:1.65;background:#faf0e4;border-radius:24px;overflow:hidden}
 .work-image img {object-fit:contain;transition:transform .6s}
 @media (hover:hover) and (prefers-reduced-motion:no-preference){.work-image:hover img{transform:scale(1.035)}}
 .work-gallery header {display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:16px 0 6px}
 .work-gallery h3 {font-size:clamp(20px,2.2vw,34px);margin:0;letter-spacing:-.035em}
 .work-gallery article p {max-width:58ch;line-height:1.55;color:#505447}
-@media(max-width:700px){.work-gallery article{width:100%}}
 
-.project-map {
-  --branch: clamp(28px, 5vw, 88px);
-  --line: #828850;
-  position: relative;
+.project-stack {
   display: grid;
-  gap: clamp(32px, 5vw, 80px);
-  margin-top: 40px;
-  padding-left: var(--branch);
+  isolation: isolate;
+  gap: clamp(28px, 6vh, 72px);
+  max-width: 1100px;
+  margin: clamp(24px, 5vw, 60px) auto 0;
 }
-.project-map::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 2px;
-  background: linear-gradient(var(--line) 92%, transparent);
-}
-.work-gallery .project-map article {
-  position: relative;
-  width: min(100%, 960px);
-  margin: 0;
+
+.work-gallery .project-stack article {
+  padding: clamp(12px, 2vw, 24px);
+  border: 1px solid #777e4533;
+  border-radius: 24px;
+  background: #f7f2e5;
+  box-shadow: 0 12px 35px #32362020;
   animation: none;
 }
-.project-map article::before,
-.project-map article::after {
-  content: "";
-  position: absolute;
-  top: 32px;
-  left: calc(-1 * var(--branch));
+
+.project-stack .work-image {
+  height: clamp(180px, 43svh, 480px);
+  border-radius: 16px;
 }
-.project-map article::before {
-  width: var(--branch);
-  border-top: 2px solid var(--line);
+
+@media (prefers-reduced-motion: no-preference) and (min-height: 660px) {
+  .project-stack { gap: clamp(96px, 22svh, 240px); }
+
+  .project-stack article {
+    position: sticky;
+    top: calc(var(--navbar-height) + 20px);
+  }
+
+  .project-stack article:focus-within {
+    z-index: 1;
+  }
 }
-.project-map article::after {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--line);
-  transform: translate(-5px,-5px);
-}
+
 .work-gallery h2, .work-gallery h3 {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 500;

@@ -7,11 +7,11 @@ export default function Projects() {
     <section id="projects" className="work-gallery">
       <p>Portfolio</p>
       <h2>Selected Work</h2>
-      <div className="project-map">
+      <div className="project-stack">
       {projects.map(project => (
         <article key={project.id}>
           <div className="work-image">
-            <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 700px) 90vw, 62vw" />
+            <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 700px) 90vw, 1050px" />
           </div>
           <header><h3>{project.title}</h3><time>{project.year}</time></header>
           <small>{project.technologies.join(" · ")}</small>
