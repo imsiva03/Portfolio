@@ -214,3 +214,47 @@ body .portfolio-navbar {width:var(--portfolio-width);border-radius:40px;backgrou
   from { opacity: .28; transform: translateY(32px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* The root layout shares this backdrop across all portfolio routes. */
+body {
+  isolation: isolate;
+}
+
+body::before,
+.hero-section .hero-ambient::before {
+  content: "";
+  position: fixed;
+  inset: -14%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 30% 35%, #a5aa6980, transparent 46%),
+    radial-gradient(ellipse at 72% 62%, #fff8d9df, transparent 48%);
+}
+
+.hero-section .hero-ambient::before {
+  position: absolute;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 30% 35%, #c2c78b42, transparent 46%),
+    radial-gradient(ellipse at 72% 62%, #6d784238, transparent 48%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body::before,
+  .hero-section .hero-ambient::before {
+    animation: portfolio-background-drift 16s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes portfolio-background-drift {
+  from { transform: translate3d(-8%, -5%, 0); }
+  to { transform: translate3d(9%, 6%, 0) scale(1.08); }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-section .hero-ambient::before {
+    translate: var(--hero-float-x, 0px) var(--hero-float-y, 0px);
+    transition: translate .65s cubic-bezier(.2, .75, .25, 1);
+  }
+}

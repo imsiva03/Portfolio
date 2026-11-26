@@ -1,83 +1,25 @@
-.custom-cursor {
+.cursor-follower {
   display: none;
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  body:has(.cursor-visible),
-  body:has(.cursor-visible) :is(a, button, [role="button"]) {
-    cursor: none !important;
-  }
-
-  .custom-cursor {
+  .cursor-follower {
+    display: block;
     position: fixed;
+    inset: 0 auto auto 0;
     z-index: 99999;
-    display: grid;
-    place-items: center;
-    width: 30px;
-    height: 30px;
-    border: 0;
+    width: 24px;
+    aspect-ratio: 1;
     border-radius: 50%;
-    color: #d4ff42;
-    background: transparent;
+    background: var(--dark-olive, #4d5237);
     pointer-events: none;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(.8);
-    transition: transform .24s ease, opacity .16s ease, background-color .24s ease, color .24s ease;
+    transform: translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
+      translate(-50%, -50%);
+    transition: opacity .18s ease;
   }
 
-  .custom-cursor.cursor-visible {
-    opacity: 1;
-    transform: translate(-50%, -50%);
+  .cursor-follower.is-visible {
+    opacity: .9;
   }
-
-  .custom-cursor.cursor-hover {
-    color: #30351f;
-    background: transparent;
-    transform: translate(-50%, -50%) scale(1.35);
-  }
-
-  .cursor-dot,
-  .cursor-arrow {
-    grid-area: 1 / 1;
-    transition: opacity .2s ease, transform .24s ease;
-  }
-
-  .cursor-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: currentColor;
-  }
-
-  .cursor-arrow {
-    opacity: 0;
-    transform: translate(-3px, 3px) scale(.65);
-  }
-
-  .cursor-hover .cursor-dot {
-    opacity: 0;
-    transform: scale(.4);
-  }
-
-  .cursor-hover .cursor-arrow {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-
-.custom-cursor::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border: 1px solid #f7f4e7;
-  border-radius: 50%;
-  background: #4d5237;
-  transform: rotate(var(--cursor-angle, 0rad)) scaleX(var(--cursor-stretch, 1));
-  transition: background-color .24s ease;
-}
-
-.custom-cursor.cursor-hover::before {
-  background: #d4ff42;
 }

@@ -1,56 +1,61 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
 import "./CustomCursor.css";
 
 export default function CustomCursor() {
-  const cursorRef = useRef(null);
+  const followerRef = useRef(null);
 
   useEffect(() => {
-    const cursor = cursorRef.current;
+    const follower = followerRef.current;
     const media = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
-    let x = 0;
-    let y = 0;
-    let targetX = 0;
-    let targetY = 0;
+    const delay = 1000;
+    const positions = [];
     let frame = 0;
-    let visible = false;
+    let hero = null;
 
-    function animate() {
-      const dx = targetX - x;
-      const dy = targetY - y;
-      const distance = Math.hypot(dx, dy);
-      x += dx * .38;
-      y += dy * .38;
-      const stretch = Math.min(distance / 110, .45);
-      const angle = Math.atan2(dy, dx);
-      cursor.style.left = x + "px";
-      cursor.style.top = y + "px";
-      cursor.style.setProperty("--cursor-stretch", 1 + stretch);
-      cursor.style.setProperty("--cursor-angle", angle + "rad");
-      frame = distance > .3 ? requestAnimationFrame(animate) : 0;
+    function resetHero() {
+      hero?.style.removeProperty("--hero-float-x");
+      hero?.style.removeProperty("--hero-float-y");
+      hero = null;
+    }
+
+    function animate(now) {
+      let position;
+      while (positions.length && positions[0].time <= now - delay) {
+        position = positions.shift();
+      }
+      if (position) {
+        follower.style.setProperty("--float-x", position.x + "px");
+        follower.style.setProperty("--float-y", position.y + "px");
+        follower.classList.add("is-visible");
+      }
+      frame = positions.length ? requestAnimationFrame(animate) : 0;
     }
 
     function hide() {
-      visible = false;
+      resetHero();
+      positions.length = 0;
       cancelAnimationFrame(frame);
       frame = 0;
-      cursor.classList.remove("cursor-visible");
+      follower.classList.remove("is-visible");
     }
 
     function move(event) {
       if (!media.matches || event.pointerType !== "mouse") return hide();
-      targetX = event.clientX;
-      targetY = event.clientY;
-      if (!visible) {
-        x = targetX;
-        y = targetY;
-        visible = true;
-        cursor.classList.add("cursor-visible");
+      const nextHero = event.target.closest?.(".hero-section");
+      if (hero !== nextHero) {
+        resetHero();
+        hero = nextHero;
       }
-      cursor.classList.toggle("cursor-hover", Boolean(event.target.closest?.("a, button, [role='button']")));
-      if (!frame) animate();
+      if (hero) {
+        const bounds = hero.getBoundingClientRect();
+        hero.style.setProperty("--hero-float-x", ((event.clientX - bounds.left) / bounds.width - 0.5) * 140 + "px");
+        hero.style.setProperty("--hero-float-y", ((event.clientY - bounds.top) / bounds.height - 0.5) * 90 + "px");
+      }
+
+      positions.push({ x: event.clientX, y: event.clientY, time: performance.now() });
+      if (!frame) frame = requestAnimationFrame(animate);
     }
 
     window.addEventListener("pointermove", move);
@@ -66,10 +71,5 @@ export default function CustomCursor() {
     };
   }, []);
 
-  return (
-    <div ref={cursorRef} className="custom-cursor" aria-hidden="true">
-      <span className="cursor-dot" />
-      <ArrowUpRight className="cursor-arrow" size={16} />
-    </div>
-  );
+  return <div ref={followerRef} className="cursor-follower" aria-hidden="true" />;
 }
